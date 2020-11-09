@@ -1,27 +1,30 @@
 package com.example.trivialix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Intent i;
     private BaseDatos dbGlobal;
-    private TextView tematica;
+    private Spinner tematica;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tematica = findViewById(R.id.tematicas);
+        tematica=findViewById(R.id.eligeTematica);
         i = new Intent(MainActivity.this, Pregunta1.class);
         Button iniciarJuego = findViewById(R.id.iniciarJuego);
         iniciarJuego.setOnClickListener(new View.OnClickListener() {
@@ -50,19 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void cargarTematicas() {
         List<Tematicas> listaTematicas = new ArrayList<>();
-        String texto= "";
         if (dbGlobal != null){
             listaTematicas =dbGlobal.getAllTematicas();
-            for (Tematicas l: listaTematicas){
-                texto= texto + l.getNombreTematica() + "\n";
-            }
+            ArrayAdapter<Tematicas> adapterTematicas=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,listaTematicas);
+            adapterTematicas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            tematica.setAdapter(adapterTematicas);
         }
         else {
             System.out.println("Error al cargar las temáticas");
-            texto = "No hay temáticas";
         }
 
-        tematica.setText(texto);
 
     }
 }

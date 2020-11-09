@@ -34,31 +34,30 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="285dp"
-        android:layout_height="330dp"
+        android:layout_width="270dp"
+        android:layout_height="264dp"
+        android:layout_marginTop="12dp"
         android:layout_x="53dp"
         android:layout_y="104dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toTopOf="@+id/eligeTematica"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666"
+        app:srcCompat="@drawable/trivialix_logo" />
+
+
+    <Spinner
+        android:id="@+id/eligeTematica"
+        android:layout_width="261dp"
+        android:layout_height="59dp"
         app:layout_constraintBottom_toTopOf="@+id/iniciarJuego"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.732"
-        app:srcCompat="@drawable/trivialix_logo"
-        android:contentDescription="@string/todo" />
-
-    <TextView
-        android:id="@+id/tematicas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#020202"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.872" />
 
 </android.support.constraint.ConstraintLayout>
