@@ -37,10 +37,12 @@ public class BaseDatos extends SQLiteOpenHelper {
         boolean bbddExiste = checkDataBase();
         if (bbddExiste){
             System.out.println("YA EXISTE LA BBDD");
+            openDataBase();
         }else{
             this.getReadableDatabase();
             try{
                 copyDataBase();
+                openDataBase();
             }catch (IOException e){
                 throw new Error("Error copiando database");
             }
@@ -54,7 +56,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             String path = DB_PATH + DB_NOMBRE;
             checkDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
         } catch (SQLiteException e){
-            //Base no creada todavia
+            System.out.println("Esto es un mensaje de checkDataBase: Base no creada todavia");
         }
 
         if (checkDB != null){
@@ -81,7 +83,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         byte[] buffer = new byte[1024];
         int length;
 
-        dataBaseInputStream = context.getAssets().open("trivialixV3.db");
+        dataBaseInputStream = context.getAssets().open("prueba.db");
         while ((length =dataBaseInputStream.read(buffer)) > 0) {
             dataBaseOutputStream.write(buffer);
         }
