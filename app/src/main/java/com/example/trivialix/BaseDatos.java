@@ -13,7 +13,7 @@ import java.io.OutputStream;
 
 public class BaseDatos extends SQLiteOpenHelper {
     private static String DB_PATH = "data/data/com.example.trivialix/databases/";
-    private static String DB_NOMBRE = "trivialixV3.db";
+    private static String DB_NOMBRE = "prueba.db";
     private SQLiteDatabase BBDD;
     private final Context context;
 
@@ -32,6 +32,16 @@ public class BaseDatos extends SQLiteOpenHelper {
     }
     public void createDataBase () throws IOException {
         boolean bbddExiste = checkDataBase();
+        if (bbddExiste){
+            System.out.println("YA EXISTE LA BBDD");
+        }else{
+            this.getReadableDatabase();
+            try{
+                copyDataBase();
+            }catch (IOException e){
+                throw new Error("Error copiando database");
+            }
+        }
     }
 
     private boolean checkDataBase() {
