@@ -1,6 +1,7 @@
 package com.example.trivialix;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -10,6 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaseDatos extends SQLiteOpenHelper {
     private static String DB_PATH = "data/data/com.example.trivialix/databases/";
@@ -85,5 +88,26 @@ public class BaseDatos extends SQLiteOpenHelper {
         dataBaseInputStream.close();
         dataBaseOutputStream.flush();
         dataBaseOutputStream.close();
+    }
+
+    //obtener las tematicas
+    public List<Tematicas> getAllTematicas(){
+        String myQuery = "select * from Tematicas";
+        Cursor cursor;
+        List<Tematicas>temas = new ArrayList<>();
+        cursor = BBDD.rawQuery(myQuery, null);
+
+        if (cursor.moveToFirst()) {
+
+            while (!cursor.isAfterLast()){
+                Tematicas tematicas=new Tematicas(cursor.getInt(cursor.getColumnIndex("id_tematica")),
+                        cursor.getString(cursor.getColumnIndex("nombreTematica")));
+                temas.add(tematicas);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        BBDD.close();
+        return temas;
     }
 }
