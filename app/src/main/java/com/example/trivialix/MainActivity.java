@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Intent i;
-    public BaseDatos dbGlobal;
+    public static BaseDatos dbGlobal;
     private Spinner tematica;
     public static final int REQUESTCODEQUIZ=1;
     public static final String ID_TEMATICA="IDTematica";
@@ -52,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return db;
+    }
+
+    public static BaseDatos getDbGlobal() {
+        return dbGlobal;
     }
 
     private void cargarTematicas() {

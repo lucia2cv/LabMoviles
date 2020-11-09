@@ -40,7 +40,7 @@ public class QuizActivity extends AppCompatActivity {
     private boolean respondido;
     private Bundle bolsa;
     private Intent recibe;
-    public BaseDatos dbGlobal;
+    private BaseDatos dbGlobal;
 
 
 
@@ -64,6 +64,7 @@ public class QuizActivity extends AppCompatActivity {
         colors=rb1.getTextColors();
         recibe=getIntent();
         bolsa=recibe.getExtras();
+        dbGlobal = MainActivity.getDbGlobal();
 
         Intent intent=getIntent();
         int tematicaid=intent.getIntExtra(MainActivity.ID_TEMATICA,0);
