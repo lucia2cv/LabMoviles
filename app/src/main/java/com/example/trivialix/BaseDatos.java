@@ -36,7 +36,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public void createDataBase () throws IOException {
         boolean bbddExiste = checkDataBase();
         if (bbddExiste){
-            System.out.println("YA EXISTE LA BBDD");
+            System.out.println("Ya existe la base de datos" + "\n" + "Abriendo base de datos...");
             openDataBase();
         }else{
             this.getReadableDatabase();
@@ -57,7 +57,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             String path = DB_PATH + DB_NOMBRE;
             checkDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
         } catch (SQLiteException e){
-            System.out.println("Esto es un mensaje de checkDataBase: Base no creada todavia");
+            System.out.println("Base de datos no creada todavía");
         }
 
         if (checkDB != null){

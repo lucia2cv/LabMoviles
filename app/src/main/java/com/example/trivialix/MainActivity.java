@@ -50,18 +50,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void cargarTematicas() {
         List<Tematicas> listaTematicas = new ArrayList<>();
-        Iterator it;
         String texto= "";
-        int x = 0;
         if (dbGlobal != null){
             listaTematicas =dbGlobal.getAllTematicas();
-            it = listaTematicas.iterator();
             for (Tematicas l: listaTematicas){
                 texto= texto + l.getNombreTematica() + "\n";
             }
         }
         else {
-            System.out.println("ERROR AL CARGAR LAS TEMATICAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println("Error al cargar las temáticas");
             texto = "No hay temáticas";
         }
 

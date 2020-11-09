@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.732"
-        app:srcCompat="@drawable/fondo_app"
+        app:srcCompat="@drawable/trivialix_logo"
         android:contentDescription="@string/todo" />
 
     <TextView
