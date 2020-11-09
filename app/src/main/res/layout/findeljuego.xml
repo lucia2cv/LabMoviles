@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ndroid="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pop_corn_wallpaper"
+    tools:context=".FinDeJuego"
+    tools:ignore="Deprecated">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/buenaPuntuacion"
+        android:layout_width="358dp"
+        android:layout_height="215dp"
+        android:layout_x="16dp"
+        android:layout_y="228dp"
+        android:src="@drawable/congrats"
+        ndroid:layout_constraintBottom_toBottomOf="parent"
+        ndroid:layout_constraintEnd_toEndOf="parent"
+        ndroid:layout_constraintStart_toStartOf="parent"
+        ndroid:layout_constraintTop_toTopOf="parent" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/puntuacionNormal"
+        android:layout_width="358dp"
+        android:layout_height="215dp"
+        android:layout_x="16dp"
+        android:layout_y="228dp"
+        android:src="@drawable/not_bad"
+        ndroid:layout_constraintBottom_toBottomOf="parent"
+        ndroid:layout_constraintEnd_toEndOf="parent"
+        ndroid:layout_constraintStart_toStartOf="parent"
+        ndroid:layout_constraintTop_toTopOf="parent" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/malaPuntuacion"
+        android:layout_width="369dp"
+        android:layout_height="221dp"
+        android:layout_x="16dp"
+        android:layout_y="228dp"
+        android:src="@drawable/malo"
+        ndroid:layout_constraintBottom_toBottomOf="parent"
+        ndroid:layout_constraintEnd_toEndOf="parent"
+        ndroid:layout_constraintStart_toStartOf="parent"
+        ndroid:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/volver"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_x="37dp"
+        android:layout_y="502dp"
+        android:background="#000000"
+        android:text="@string/reintentar"
+        android:textColor="#FFFFFF"
+        ndroid:layout_constraintBottom_toBottomOf="parent"
+        ndroid:layout_constraintEnd_toEndOf="parent"
+        ndroid:layout_constraintStart_toStartOf="parent"
+        ndroid:layout_constraintTop_toBottomOf="@+id/buenaPuntuacion" />
+
+    <TextView
+        android:id="@+id/puntuacionFinal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_x="29dp"
+        android:layout_y="172dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#000000"
+        android:textSize="24sp"
+        ndroid:layout_constraintBottom_toTopOf="@+id/buenaPuntuacion"
+        ndroid:layout_constraintTop_toTopOf="parent"
+        ndroid:layout_constraintVertical_bias="0.732"
+        tools:layout_editor_absoluteX="0dp" tools:targetApi="jelly_bean"/>
+</android.support.constraint.ConstraintLayout>

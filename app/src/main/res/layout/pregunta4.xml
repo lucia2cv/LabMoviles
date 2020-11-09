@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pop_corn_wallpaper"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".Pregunta4">
+
+    <!--app:layout_constraintVertical_bias="0.947"-->
+
+    <TextView
+        android:id="@+id/pregunta4"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_x="13dp"
+        android:layout_y="86dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal"
+        android:text="@string/enunciadoPregunta4"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.902"
+
+
+        tools:ignore="MissingConstraints"
+        tools:targetApi="jelly_bean" />
+
+    <TextView
+        android:id="@+id/puntuacionFinal"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_x="250dp"
+        android:layout_y="103dp"
+        android:background="#000000"
+        android:gravity="center"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup3"
+        android:layout_width="285dp"
+        android:layout_height="126dp"
+        android:layout_x="0dp"
+        android:layout_y="356dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/siguientePregunta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.887"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/respuesta1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/matt_elena_niklaus"
+            android:textSize="18sp"
+            tools:ignore="OnClick" />
+
+        <RadioButton
+            android:id="@+id/respuesta2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/alaric_hayley_jeremy"
+            android:textSize="18sp"
+            tools:ignore="OnClick" />
+
+        <RadioButton
+            android:id="@+id/respuesta3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/stefan_katherine_damon"
+            android:textSize="18sp"
+            tools:ignore="OnClick" />
+
+        <RadioButton
+            android:id="@+id/respuesta4"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/enzo_bonnie_y_damon"
+            android:textSize="18sp"
+            tools:ignore="OnClick" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/siguientePregunta"
+        android:layout_width="145dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_x="0dp"
+        android:layout_y="567dp"
+        android:background="#000000"
+        android:text="@string/siguiente"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/volver"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.925"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/volver"
+        android:layout_width="154dp"
+        android:layout_height="54dp"
+        android:layout_x="0dp"
+        android:layout_y="567dp"
+        android:background="#000000"
+        android:text="@string/reintentar"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/siguientePregunta"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.923"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="332dp"
+        android:layout_height="198dp"
+        android:layout_x="33dp"
+        android:layout_y="136dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/foto_pregunta4"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.905"
+        tools:ignore="MissingConstraints" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,42 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Trivialix</string>
+    <string name="si_sabes_de_series_adelante">SI SABES DE SERIES, ¡ADELANTE!</string>
+
+    <string name="enunciadoPregunta1">¿Cuál es la famosa secuencia de números que aparece en la serie de «PERDIDOS»?</string>
+    <string name="_4_8_15_16_23_42">4 8 15 16 23 42</string>
+    <string name="_4_8_15_16_23_32">4 8 15 16 23 32</string>
+    <string name="_4_8_15_18_37_56">4 8 15 18 37 56</string>
+    <string name="_4_8_10_23_36_56">4 8 10 23 36 56</string>
+
+    <string name="enunciadoPregunta2">¿Cómo se llaman los protagonistas de la serie «BATES MOTEL»?</string>
+    <string name="mandy_y_bob_motel">Mandy y Bob Motel</string>
+    <string name="alice_y_alex_romero">Alice y Alex Romero</string>
+    <string name="wendy_y_billy_hudson">Wendy y Billy Hudson</string>
+    <string name="norma_y_norman_bates">Norma y Norman Bates</string>
+
+    <string name="enunciadoPregunta3">¿Qué día desaparece Will Byers en la serie de «STRANGER THINGS»?</string>
+    <string name="_5_de_noviembre_1983">5 de noviembre 1983</string>
+    <string name="_10_de_noviembre_1983">10 de noviembre 1983</string>
+    <string name="_6_de_noviembre_1983">6 de noviembre 1983</string>
+    <string name="_8_de_noviembre_1983">8 de noviembre 1983</string>
+
+    <string name="enunciadoPregunta4">¿Quiénes son estos personajes de la serie «CRÓNICAS VAMPÍRICAS?</string>
+    <string name="matt_elena_niklaus">Matt, Elena, Niklaus</string>
+    <string name="alaric_hayley_jeremy">Alaric, Hayley, Jeremy</string>
+    <string name="stefan_katherine_damon">Stefan, Katherine, Damon</string>
+    <string name="enzo_bonnie_y_damon">Enzo, Bonnie y Damon</string>
+
+
+    <string name="enunciadoPregunta5">¿Qué Pokémon tiene más debilidades?</string>
+    <string name="hydreigon">hydreigon</string>
+    <string name="charizard">charizard</string>
+    <string name="umbreon">umbreon</string>
+    <string name="articuno">articuno</string>
+
+    <string name="siguiente">Siguiente</string>
+    <string name="reintentar">reintentar</string>
+
+
+    <string name="todo" tools:ignore="DuplicateDefinition">TODO</string>
+
+</resources>
