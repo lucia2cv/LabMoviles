@@ -16,8 +16,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Intent i;
-    private BaseDatos dbGlobal;
+    public BaseDatos dbGlobal;
     private Spinner tematica;
+    public static final int REQUESTCODEQUIZ=1;
+    public static final String ID_TEMATICA="IDTematica";
+    public static final String TEMATICA="NombreTematica";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         iniciarJuego.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(i);
+                inicio();
             }
         });
         dbGlobal = iniciarBBDD();
@@ -64,5 +67,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void inicio() {
+        Tematicas tematicas=(Tematicas)tematica.getSelectedItem();
+        int idTematica=tematicas.getId_tematica();
+        String nombreTematica=tematicas.getNombreTematica();
+
+        Intent i=new Intent(this,QuizActivity.class);
+        i.putExtra(ID_TEMATICA,idTematica);
+        i.putExtra(nombreTematica,TEMATICA);
+        startActivityForResult(i,REQUESTCODEQUIZ);
     }
 }

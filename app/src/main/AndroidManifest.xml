@@ -45,6 +45,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.trivialix.QuizActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name="com.example.trivialix.FinDeJuego"
             tools:ignore="Instantiatable">
             <intent-filter>

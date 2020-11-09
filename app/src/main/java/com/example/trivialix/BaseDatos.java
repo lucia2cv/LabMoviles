@@ -93,7 +93,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         dataBaseOutputStream.close();
     }
 
-    //obtener las tematicas
+    //Obtener las temáticas
     public List<Tematicas> getAllTematicas(){
         String myQuery = "select * from Tematicas";
         Cursor cursor;
@@ -110,7 +110,35 @@ public class BaseDatos extends SQLiteOpenHelper {
             }
         }
         cursor.close();
-        BBDD.close();
+        //BBDD.close();
         return temas;
     }
+
+    //Obtener las preguntas
+    public List<Preguntas>getAllPreguntas(int idTematica){
+        List<Preguntas>listaDePreguntas=new ArrayList<>();
+        BBDD=getWritableDatabase();
+        String myQuery = "SELECT * FROM  Preguntas";
+        Cursor cursor=BBDD.rawQuery(myQuery,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()){
+                Preguntas pregunta=new Preguntas(cursor.getInt(cursor.getColumnIndex("id_pregunta")),
+                        cursor.getString(cursor.getColumnIndex("enunciado")),
+                        cursor.getString(cursor.getColumnIndex("imagen")),
+                        cursor.getString(cursor.getColumnIndex("audio")),
+                        cursor.getString(cursor.getColumnIndex("OpcionA")),
+                        cursor.getString(cursor.getColumnIndex("OpcionB")),
+                        cursor.getString(cursor.getColumnIndex("OpcionC")),
+                        cursor.getString(cursor.getColumnIndex("OpcionD")),
+                        cursor.getString(cursor.getColumnIndex("OpcionCorrecta")),
+                        cursor.getInt(cursor.getColumnIndex("TieneImagenAudio")),
+                        cursor.getInt(cursor.getColumnIndex("id_tema")));
+                listaDePreguntas.add(pregunta);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return listaDePreguntas;
+    }
+
 }

@@ -38,5 +38,12 @@
 
 
     <string name="todo" tools:ignore="DuplicateDefinition">TODO</string>
+    <string name="tematica">Tematica</string>
+    <string name="_00_30">00:30</string>
+    <string name="opcion_a">Opcion a</string>
+    <string name="pregunta">pregunta</string>
+    <string name="opcion_b">Opcion b</string>
+    <string name="opcion_c">Opcion c</string>
+    <string name="opcion_d">Opcion d</string>
 
 </resources>
