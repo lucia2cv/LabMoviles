@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dbGlobal = iniciarBBDD();
         tematica = findViewById(R.id.tematicas);
         i = new Intent(MainActivity.this, Pregunta1.class);
         Button iniciarJuego = findViewById(R.id.iniciarJuego);
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        dbGlobal = iniciarBBDD();
 
     }
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private void cargarTematicas() {
         List<Tematicas> listaTematicas = new ArrayList<>();
         Iterator it;
-        String texto= "No hay temáticas";
+        String texto= "";
         int x = 0;
         if (dbGlobal != null){
             listaTematicas =dbGlobal.getAllTematicas();
@@ -60,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 texto= texto + listaTematicas.get(x).getNombreTematica() + "\n";
                 x++;
             }
-            tematica.setText(texto);
         }
         else {
             System.out.println("ERROR AL CARGAR LAS TEMATICAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            texto = "No hay temáticas";
         }
 
-
+        tematica.setText(texto);
 
     }
 }
