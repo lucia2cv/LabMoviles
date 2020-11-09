@@ -12,8 +12,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class BaseDatos extends SQLiteOpenHelper {
-    private static String DB_PATH = "data/data/packageName/databases";
-    private static String DB_NOMBRE = "dbTrivialix";
+    private static String DB_PATH = "data/data/com.example.trivialix/databases/";
+    private static String DB_NOMBRE = "trivialixV3.db";
     private SQLiteDatabase BBDD;
     private final Context context;
 
@@ -47,7 +47,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         if (checkDB != null){
             checkDB.close();
         }
-        return  checkDB !=null ? true:false;
+        return  checkDB !=null;
     }
 
     public void openDataBase() throws SQLException {
@@ -68,7 +68,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         byte[] buffer = new byte[1024];
         int length;
 
-        dataBaseInputStream = context.getAssets().open("trivialix2");
+        dataBaseInputStream = context.getAssets().open("trivialixV3.db");
         while ((length =dataBaseInputStream.read(buffer)) > 0) {
             dataBaseOutputStream.write(buffer);
         }
