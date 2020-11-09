@@ -4,9 +4,9 @@
     package="com.example.trivialix">
 
     <application
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/trivialix_icon"
         android:label="TRIVIALIX"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/trivialix_icon_redondo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="MissingClass">
