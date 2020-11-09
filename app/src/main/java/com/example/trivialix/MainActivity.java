@@ -31,21 +31,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         dbGlobal = iniciarBBDD();
+        cargarTematicas();
 
     }
 
     public BaseDatos iniciarBBDD(){
         //Inicializar BBDD
-        BaseDatos db = new BaseDatos(this, "trivialixV3.db", null, 1);
+        BaseDatos db = new BaseDatos(this, "prueba.db", null, 1);
         try {
             db.createDataBase();
-            db.openDataBase();
-            cargarTematicas();
+
         } catch(IOException e) {
 
             e.printStackTrace();
         }
-        return dbGlobal;
+        return db;
     }
 
     private void cargarTematicas() {
@@ -56,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
         if (dbGlobal != null){
             listaTematicas =dbGlobal.getAllTematicas();
             it = listaTematicas.iterator();
-            while (it.hasNext()){
-                texto= texto + listaTematicas.get(x).getNombreTematica() + "\n";
-                x++;
+            for (Tematicas l: listaTematicas){
+                texto= texto + l.getNombreTematica() + "\n";
             }
         }
         else {

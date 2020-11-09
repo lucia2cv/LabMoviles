@@ -47,6 +47,7 @@ public class BaseDatos extends SQLiteOpenHelper {
                 throw new Error("Error copiando database");
             }
         }
+        //return this;
     }
 
     private boolean checkDataBase() {
