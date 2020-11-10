@@ -19,23 +19,14 @@ import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private TextView textEnunciado;
-    private TextView textPuntos;
-    private TextView textContadorPreguntas;
-    private TextView textViewTematica;
-    private TextView textTemporizador;
+    private TextView textEnunciado, textPuntos, textContadorPreguntas, textViewTematica, textTemporizador;
     private RadioGroup radioGroup;
-    private RadioButton rb1;
-    private RadioButton rb2;
-    private RadioButton rb3;
-    private RadioButton rb4;
+    private RadioButton rb1, rb2, rb3, rb4;
     private Button next;
     private List<Preguntas> listaDePreguntas;
     private ColorStateList colors;
-    private int preguntasContestadas;
-    private int preguntasTotales;
+    private int preguntasContestadas, preguntasTotales, puntuacion;
     private Preguntas preguntaActual;
-    private int score;
     private String comodin;
     private boolean respondido;
     private Bundle bolsa;
@@ -66,11 +57,10 @@ public class QuizActivity extends AppCompatActivity {
         bolsa=recibe.getExtras();
         dbGlobal = MainActivity.getDbGlobal();
 
-        Intent intent=getIntent();
-        int tematicaid=intent.getIntExtra(MainActivity.ID_TEMATICA,0);
-        String tematicaName= intent.getStringExtra(MainActivity.TEMATICA);
+        int tematicaid = recibe.getIntExtra(MainActivity.ID_TEMATICA,1);
+        String tematicaName= recibe.getStringExtra(MainActivity.TEMATICA);
 
-        textViewTematica.setText("Tematica: " +tematicaName);
+        textViewTematica.setText("Tematica: " + tematicaName);
 
         if(savedInstanceState==null){
             if (dbGlobal != null){
@@ -138,8 +128,8 @@ public class QuizActivity extends AppCompatActivity {
             comodin="d";
         }
         if(comodin.equals(preguntaActual.getOpcionCorrecta())){
-            score++;
-            textPuntos.setText("Puntos: "+score);
+            puntuacion++;
+            textPuntos.setText("Puntos: "+ puntuacion);
         }
         mostrarOpcionCorrecta();
     }
@@ -167,7 +157,7 @@ public class QuizActivity extends AppCompatActivity {
         if(preguntasContestadas<preguntasTotales){
             next.setText("Siguiente");
         }else{
-            next.setText("Ya te rindes");
+            next.setText("Rendirte");
         }
     }
 

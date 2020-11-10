@@ -9,36 +9,37 @@
     android:padding="16dp"
     tools:context=".QuizActivity">
 
+
     <TextView
         android:id="@+id/puntuacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/puntuaci_n"
         android:textColor="@android:color/black"
-        android:text="Puntuación"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.194"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.252" />
+        app:layout_constraintVertical_bias="0.202" />
 
     <TextView
         android:id="@+id/numeroPregunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Numero de pregunta"
+        android:text="@string/numero_de_pregunta"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pregunta"
+        app:layout_constraintBottom_toTopOf="@+id/pregunta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
-
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tematicaElegida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="106dp"
+        android:layout_height="46dp"
         android:freezesText="true"
         android:text="@string/tematica"
         android:textColor="@android:color/black"
@@ -63,29 +64,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.144" />
 
-    <TextView
-        android:id="@+id/pregunta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:text="@string/pregunta"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
-
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="273dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="285dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numeroPregunta">
+        app:layout_constraintTop_toBottomOf="@+id/pregunta">
 
         <RadioButton
             android:id="@+id/opciona"
@@ -123,5 +110,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:layout_constraintVertical_bias="0.494" />
+
+    <TextView
+        android:id="@+id/pregunta"
+        android:layout_width="298dp"
+        android:layout_height="119dp"
+        android:layout_marginBottom="360dp"
+        android:text="@string/pregunta"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

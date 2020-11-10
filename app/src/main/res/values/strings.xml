@@ -45,5 +45,7 @@
     <string name="opcion_b">Opcion b</string>
     <string name="opcion_c">Opcion c</string>
     <string name="opcion_d">Opcion d</string>
+    <string name="numero_de_pregunta">Numero de pregunta</string>
+    <string name="puntuaci_n">Puntuación</string>
 
 </resources>

@@ -115,10 +115,22 @@ public class BaseDatos extends SQLiteOpenHelper {
     }
 
     //Obtener las preguntas
-    public List<Preguntas>getAllPreguntas(int idTematica){
+    public List<Preguntas>getAllPreguntas(int id_tematica){
         List<Preguntas>listaDePreguntas=new ArrayList<>();
-        BBDD=getWritableDatabase();
         String myQuery = "SELECT * FROM  Preguntas";
+        BBDD=getWritableDatabase();
+        switch (id_tematica){
+            case 1 : myQuery = "SELECT * FROM  Preguntas WHERE id_tema = 1";
+                    break;
+            case 2: myQuery = "SELECT * FROM  Preguntas WHERE id_tema = 2";
+                break;
+            case 3: myQuery = "SELECT * FROM  Preguntas WHERE id_tema = 3";
+                break;
+            case 4: myQuery = "SELECT * FROM  Preguntas WHERE id_tema = 4";
+            break;
+
+
+        }
         Cursor cursor=BBDD.rawQuery(myQuery,null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()){
