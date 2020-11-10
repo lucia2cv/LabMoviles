@@ -191,7 +191,6 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void acabarTest() {
-
-
+        finish();
     }
 }
