@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i=new Intent(this,QuizActivity.class);
         i.putExtra(ID_TEMATICA,idTematica);
-        i.putExtra(nombreTematica,TEMATICA);
+        i.putExtra(TEMATICA,nombreTematica);
         startActivityForResult(i,REQUESTCODEQUIZ);
     }
 }
