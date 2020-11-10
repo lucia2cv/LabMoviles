@@ -90,7 +90,13 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
-        //volver.setOnClickListener(startActivity(vueltaAtras));
+        volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(vueltaAtras);
+                }
+
+        });
     }
 
     @SuppressLint("SetTextI18n")
