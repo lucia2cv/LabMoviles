@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Trivialix</string>
-    <string name="si_sabes_de_series_adelante">SI SABES DE SERIES, ¡ADELANTE!</string>
+    <string name="comenzar">¡ADELANTE!</string>
 
     <string name="enunciadoPregunta1">¿Cuál es la famosa secuencia de números que aparece en la serie de «PERDIDOS»?</string>
     <string name="_4_8_15_16_23_42">4 8 15 16 23 42</string>

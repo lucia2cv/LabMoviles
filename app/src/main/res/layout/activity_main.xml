@@ -21,7 +21,7 @@
         android:layout_x="13dp"
         android:layout_y="474dp"
         android:background="@android:color/holo_red_dark"
-        android:text="@string/si_sabes_de_series_adelante"
+        android:text="@string/comenzar"
         android:textColor="@android:color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"

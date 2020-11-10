@@ -20,31 +20,6 @@
 
             </intent-filter>
         </activity>
-        <activity android:name="com.example.trivialix.Pregunta1">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.example.trivialix.Pregunta2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.example.trivialix.Pregunta3">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.example.trivialix.Pregunta4">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.example.trivialix.Pregunta5">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
         <activity android:name="com.example.trivialix.QuizActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

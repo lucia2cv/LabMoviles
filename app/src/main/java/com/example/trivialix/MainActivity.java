@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tematica=findViewById(R.id.eligeTematica);
-        i = new Intent(MainActivity.this, Pregunta1.class);
         Button iniciarJuego = findViewById(R.id.iniciarJuego);
         iniciarJuego.setOnClickListener(new View.OnClickListener() {
             @Override
