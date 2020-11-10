@@ -81,11 +81,19 @@ public class QuizActivity extends AppCompatActivity {
                 if(!respondido){
                     if(rb1.isChecked()||rb2.isChecked()||rb3.isChecked()||rb4.isChecked()){
                         comprobar();
+                        rb1.setEnabled(false);
+                        rb2.setEnabled(false);
+                        rb3.setEnabled(false);
+                        rb4.setEnabled(false);
                     }else{
                         Toast.makeText(QuizActivity.this,"Responde",Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     siguiente();
+                    rb1.setEnabled(true);
+                    rb2.setEnabled(true);
+                    rb3.setEnabled(true);
+                    rb4.setEnabled(true);
                 }
             }
         });
