@@ -50,9 +50,9 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
             mostrarPuntuacion.setText("Su puntuación es: " + puntuacion + " puntos");
         }
 
-        if(puntuacion<=4){
+        if(puntuacion<=14){
             gifMalaPuntacion.setVisibility(View.VISIBLE);
-        } else if(puntuacion <= 9){
+        } else if(puntuacion <= 24){
             gifPuntacionNormal.setVisibility(View.VISIBLE);
         }else{
             gifBuenaPuntacion.setVisibility(View.VISIBLE);
