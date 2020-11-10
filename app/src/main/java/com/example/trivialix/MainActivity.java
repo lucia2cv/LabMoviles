@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void abrirManual(){
-        /*Intent i=new Intent(this, Ayuda.class);
-        startActivity(i);*/
+        Intent i=new Intent(this, MostrarManual.class);
+        startActivity(i);
 
     }
     public void hacerLogin(){
