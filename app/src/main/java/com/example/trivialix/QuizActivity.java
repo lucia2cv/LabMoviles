@@ -22,16 +22,16 @@ public class QuizActivity extends AppCompatActivity {
     private TextView textEnunciado, textPuntos, textContadorPreguntas, textViewTematica, textTemporizador;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
-    private Button next;
+    private Button siguiente, volver;
     private List<Preguntas> listaDePreguntas;
     private ColorStateList colors;
-    private int preguntasContestadas, preguntasTotales, puntuacion;
+    private int preguntasContestadas, puntuacion;
     private static final int MAX_PREGUNTAS = 10;
     private Preguntas preguntaActual;
     private String comodin;
     private boolean respondido;
     private Bundle bolsa;
-    private Intent recibe;
+    private Intent recibe, vueltaAtras, resultados;
     private BaseDatos dbGlobal;
 
 
@@ -41,7 +41,8 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
+        vueltaAtras=new Intent(this, MainActivity.class);
+        resultados=new Intent(this, FinDeJuego.class);
         textViewTematica=findViewById(R.id.tematicaElegida);
         textEnunciado=findViewById(R.id.pregunta);
         textPuntos=findViewById(R.id.puntuacion);
@@ -52,7 +53,8 @@ public class QuizActivity extends AppCompatActivity {
         rb2=findViewById(R.id.opcionb);
         rb3=findViewById(R.id.opcionc);
         rb4=findViewById(R.id.opciond);
-        next=findViewById(R.id.siguiente);
+        siguiente=findViewById(R.id.siguiente);
+        volver = findViewById(R.id.reintentar);
         colors=rb1.getTextColors();
         recibe=getIntent();
         bolsa=recibe.getExtras();
@@ -61,12 +63,11 @@ public class QuizActivity extends AppCompatActivity {
         int tematicaid = recibe.getIntExtra(MainActivity.ID_TEMATICA,1);
         String tematicaName= recibe.getStringExtra(MainActivity.TEMATICA);
 
-        textViewTematica.setText("Tematica: " + tematicaName);
+        textViewTematica.setText("Temática: " + tematicaName);
 
         if(savedInstanceState==null){
             if (dbGlobal != null){
                 listaDePreguntas=dbGlobal.getAllPreguntas(tematicaid);
-                preguntasTotales=listaDePreguntas.size();
                 Collections.shuffle(listaDePreguntas);
                 siguiente();
 
@@ -74,7 +75,7 @@ public class QuizActivity extends AppCompatActivity {
 
         }
 
-        next.setOnClickListener(new View.OnClickListener() {
+        siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!respondido){
@@ -88,6 +89,8 @@ public class QuizActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //volver.setOnClickListener(startActivity(vueltaAtras));
     }
 
     @SuppressLint("SetTextI18n")
@@ -109,7 +112,8 @@ public class QuizActivity extends AppCompatActivity {
             preguntasContestadas++;
             textContadorPreguntas.setText("Preguntas: "+preguntasContestadas+"/"+MAX_PREGUNTAS);
             respondido=false;
-            next.setText("Siguiente");
+            siguiente.setText("Comprobar");
+            volver.setText("Abandonar");
         }else{
             acabarTest();
         }
@@ -129,9 +133,17 @@ public class QuizActivity extends AppCompatActivity {
             comodin="d";
         }
         if(comodin.equals(preguntaActual.getOpcionCorrecta())){
-            puntuacion++;
-            textPuntos.setText("Puntos: "+ puntuacion);
+            puntuacion = puntuacion + 3;
+        } else{
+            if (puntuacion > 2){
+                puntuacion = puntuacion - 2;
+            }
+            else {
+                puntuacion = 0;
+            }
+
         }
+        textPuntos.setText("Puntos: "+ puntuacion);
         mostrarOpcionCorrecta();
     }
 
@@ -156,13 +168,16 @@ public class QuizActivity extends AppCompatActivity {
                 break;
         }
         if(preguntasContestadas<MAX_PREGUNTAS){
-            next.setText("Siguiente");
+            siguiente.setText("Siguiente");
         }else{
-            next.setText("Rendirte");
+            siguiente.setText("Resultados");
+            resultados.putExtra("puntuacion",puntuacion);
+            startActivity(resultados);
         }
     }
 
     private void acabarTest() {
-        finish();
+
+
     }
 }
