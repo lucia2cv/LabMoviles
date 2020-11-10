@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public BaseDatos iniciarBBDD(){
         //Inicializar BBDD
-        BaseDatos db = new BaseDatos(this, "prueba.db", null, 1);
+        BaseDatos db = new BaseDatos(this, "trivialix.db", null, 1);
         try {
             db.createDataBase();
 

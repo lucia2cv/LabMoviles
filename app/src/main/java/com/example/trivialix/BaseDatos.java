@@ -16,7 +16,7 @@ import java.util.List;
 
 public class BaseDatos extends SQLiteOpenHelper {
     private static String DB_PATH = "data/data/com.example.trivialix/databases/";
-    private static String DB_NOMBRE = "prueba.db";
+    private static String DB_NOMBRE = "trivialix.db";
     private SQLiteDatabase BBDD;
     private final Context context;
 
@@ -84,7 +84,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         byte[] buffer = new byte[1024];
         int length;
 
-        dataBaseInputStream = context.getAssets().open("prueba.db");
+        dataBaseInputStream = context.getAssets().open("trivialix.db");
         while ((length =dataBaseInputStream.read(buffer)) > 0) {
             dataBaseOutputStream.write(buffer);
         }
