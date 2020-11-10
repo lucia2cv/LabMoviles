@@ -110,7 +110,6 @@ public class BaseDatos extends SQLiteOpenHelper {
             }
         }
         cursor.close();
-        //BBDD.close();
         return temas;
     }
 
@@ -153,4 +152,91 @@ public class BaseDatos extends SQLiteOpenHelper {
         return listaDePreguntas;
     }
 
+    //Obtener los usuarios
+    public List<Usuarios> getAllUsuarios() {
+        String myQuery = "select * from Usuarios";
+        Cursor cursor;
+        List<Usuarios> usuarios = new ArrayList<>();
+        cursor = BBDD.rawQuery(myQuery, null);
+
+        if (cursor.moveToFirst()) {
+
+            while (!cursor.isAfterLast()) {
+                Usuarios usuario = new Usuarios(cursor.getInt(cursor.getColumnIndex("id_usuario")),
+                        cursor.getString(cursor.getColumnIndex("nombreUsuario")),
+                        cursor.getString(cursor.getColumnIndex("password")),
+                        cursor.getInt(cursor.getColumnIndex("record")));
+                usuarios.add(usuario);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return usuarios;
+
+    }
+
+    //Obtener una lista de los nombres de los usuarios
+    public ArrayList nombresUsuario(){
+        List<Usuarios> usuarios = getAllUsuarios();
+        ArrayList nombresUsuarios = new ArrayList();
+        for (Usuarios u: usuarios){
+            nombresUsuarios.add(u.getNombre());
+
+        }
+        return nombresUsuarios;
+    }
+
+
+    //Comprobar si un usuario está registrado
+    public boolean estaRegistrado(String nombreUser){
+        ArrayList nombres = nombresUsuario();
+        return  nombres.contains(nombreUser);
+
+    }
+
+    //Comprobar contraseña y usuario
+
+    public boolean comprobarLogin(String nombre, String password){
+        if (estaRegistrado(nombre)) {
+            String myQuery = "select * from Usuarios where nombre =" + nombre;
+            Cursor cursor = BBDD.rawQuery(myQuery, null);
+            String passwordBBDD = cursor.getString(cursor.getColumnIndex("password"));
+            if (passwordBBDD.equals(password)){
+                return true;
+            }
+            cursor.close();
+        }
+
+        return false;
+
+    }
+
+    //Crear un usuario
+    public boolean crearUsuario(String nombre, String password){
+        int id_user = getAllUsuarios().size() + 1;
+        if (!estaRegistrado(nombre)) {
+            String myQuery = "insert into Usuarios (id_user, nombreUsuario, password, record) values (" + String.valueOf(id_user) + nombre + ", " + password + ", NULL)";
+            Cursor cursor = BBDD.rawQuery(myQuery, null);
+            cursor.close();
+            return true;
+        } else{
+            return false;
+        }
+
+    }
+    //Dar de baja un usuario
+    public boolean borrarUsuario(String nombreUsuario){
+        try{
+            String myQuery = "delete from Usuarios  where nombreUsuario =" + nombreUsuario;
+            Cursor cursor = BBDD.rawQuery(myQuery, null);
+            cursor.close();
+            return true;
+        } catch (SQLException sqlException){
+            sqlException.printStackTrace();
+            System.out.println("Usuario no encontrado");
+            return false;
+        }
+
+
+    }
 }

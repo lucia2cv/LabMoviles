@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pop_corn_wallpaper">
+
+    <Button
+        android:id="@+id/volver_login"
+        android:layout_width="109dp"
+        android:layout_height="54dp"
+        android:text="@string/atr_s"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/borrar"
+        app:layout_constraintVertical_bias="0.277" />
+
+    <Button
+        android:id="@+id/registro"
+        android:layout_width="243dp"
+        android:layout_height="83dp"
+        android:background="@drawable/buttonshape"
+        android:text="@string/registrarse"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="243dp"
+        android:layout_height="83dp"
+        android:background="@drawable/buttonshape"
+        android:text="@string/acceder"
+        app:layout_constraintBottom_toTopOf="@+id/borrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.852" />
+
+    <Button
+        android:id="@+id/borrar"
+        android:layout_width="243dp"
+        android:layout_height="83dp"
+        android:background="@drawable/buttonshape"
+        android:text="@string/borrar_usuario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.694" />
+</android.support.constraint.ConstraintLayout>

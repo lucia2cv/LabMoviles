@@ -47,5 +47,12 @@
     <string name="opcion_d">Opcion d</string>
     <string name="numero_de_pregunta">Numero de pregunta</string>
     <string name="puntuaci_n">Puntuación</string>
+    <string name="acceder">Acceder</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="borrar_usuario">Borrar usuario</string>
+    <string name="atr_s">Atrás</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="nombre">Nombre</string>
 
 </resources>

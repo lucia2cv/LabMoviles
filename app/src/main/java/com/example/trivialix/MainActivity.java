@@ -1,6 +1,5 @@
 package com.example.trivialix;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,8 +14,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Intent i;
-    public static BaseDatos dbGlobal;
+    private static BaseDatos dbGlobal;
     private Spinner tematica;
+    private Button ayuda, login, iniciarJuego;
     public static final int REQUESTCODEQUIZ=1;
     public static final String ID_TEMATICA="IDTematica";
     public static final String TEMATICA="NombreTematica";
@@ -28,11 +27,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tematica=findViewById(R.id.eligeTematica);
-        Button iniciarJuego = findViewById(R.id.iniciarJuego);
+        ayuda = findViewById(R.id.ayuda);
+        login = findViewById(R.id.login_main);
+        iniciarJuego = findViewById(R.id.iniciarJuego);
         iniciarJuego.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inicio();
+            }
+        });
+        ayuda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirManual();
+            }
+        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hacerLogin();
             }
         });
         dbGlobal = iniciarBBDD();
@@ -70,6 +83,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+    public void abrirManual(){
+        /*Intent i=new Intent(this, Ayuda.class);
+        startActivity(i);*/
+
+    }
+    public void hacerLogin(){
+        Intent i=new Intent(this, OpcionesUsuarios.class);
+        startActivity(i);
     }
 
     private void inicio() {

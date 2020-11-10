@@ -125,10 +125,10 @@
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/siguiente"
-        app:layout_constraintHorizontal_bias="0.721"
+        app:layout_constraintHorizontal_bias="0.742"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <Button
         android:id="@+id/siguiente"
@@ -141,6 +141,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:layout_constraintVertical_bias="0.052" />
+        app:layout_constraintVertical_bias="0.04" />
 
 </android.support.constraint.ConstraintLayout>
