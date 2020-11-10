@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -16,16 +17,25 @@ import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
+    private static final long CONTADORMILISEGUNDOS  =11000;
+    private static final String LISTAPREGUNTAS = "keyQuestionList";
+    private static final String PREGUNTASCONTADOR = "keyQuestionCount";
+    private static final String SCORE = "score";
+    private static final String TIEMPO = "tiempo";
+    private static final String RESPONDER = "responder";
+    private long tiempoEnMilisegundos;
     private TextView textEnunciado, textPuntos, textContadorPreguntas, textViewTematica, textTemporizador;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button siguiente, volver;
     private List<Preguntas> listaDePreguntas;
     private ColorStateList colors;
-    private int preguntasContestadas, puntuacion;
+    private ColorStateList colorTemporizador;
+    private int preguntasContestadas, puntuacion,totalPreguntas,contadorPreguntas;
     private static final int MAX_PREGUNTAS = 10;
     private Preguntas preguntaActual;
     private String comodin;
@@ -33,6 +43,7 @@ public class QuizActivity extends AppCompatActivity {
     private Bundle bolsa;
     private Intent recibe, vueltaAtras, resultados;
     private BaseDatos dbGlobal;
+    private CountDownTimer temporizador;
 
 
 
@@ -55,10 +66,12 @@ public class QuizActivity extends AppCompatActivity {
         rb4=findViewById(R.id.opciond);
         siguiente=findViewById(R.id.siguiente);
         volver = findViewById(R.id.reintentar);
+        textTemporizador=findViewById(R.id.tiempo);
         colors=rb1.getTextColors();
         recibe=getIntent();
         bolsa=recibe.getExtras();
         dbGlobal = MainActivity.getDbGlobal();
+        colorTemporizador=textTemporizador.getTextColors();
 
         int tematicaid = recibe.getIntExtra(MainActivity.ID_TEMATICA,1);
         String tematicaName= recibe.getStringExtra(MainActivity.TEMATICA);
@@ -72,7 +85,20 @@ public class QuizActivity extends AppCompatActivity {
                 siguiente();
 
             }
-
+        }else{
+            listaDePreguntas=savedInstanceState.getParcelableArrayList(LISTAPREGUNTAS);
+            totalPreguntas=listaDePreguntas.size();
+            contadorPreguntas=savedInstanceState.getInt(PREGUNTASCONTADOR);
+            preguntaActual=listaDePreguntas.get(contadorPreguntas-1);
+            puntuacion=savedInstanceState.getInt(SCORE);
+            tiempoEnMilisegundos=savedInstanceState.getLong(TIEMPO);
+            respondido=savedInstanceState.getBoolean(RESPONDER);
+            if(!respondido){
+                tiempoMaximo();
+            }else{
+                actualizarTemporizador();
+                mostrarOpcionCorrecta();
+            }
         }
 
         siguiente.setOnClickListener(new View.OnClickListener() {
@@ -128,13 +154,47 @@ public class QuizActivity extends AppCompatActivity {
             respondido=false;
             siguiente.setText("Comprobar");
             volver.setText("Abandonar");
+            tiempoEnMilisegundos=CONTADORMILISEGUNDOS;
+            tiempoMaximo();
         }else{
             acabarTest();
         }
     }
 
+    private void tiempoMaximo() {
+        temporizador=new CountDownTimer(tiempoEnMilisegundos,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tiempoEnMilisegundos=millisUntilFinished;
+                actualizarTemporizador();
+            }
+
+            @Override
+            public void onFinish() {
+                tiempoEnMilisegundos=0;
+                actualizarTemporizador();
+                comprobar();
+            }
+        }.start();
+    }
+
+    private void actualizarTemporizador() {
+        int minutos=(int)(tiempoEnMilisegundos/1000)/60;
+        int segundos=(int)(tiempoEnMilisegundos/1000)%60;
+        String formatoTiempo=String.format(Locale.getDefault(),"%02d:%02d", minutos, segundos);
+        textTemporizador.setText(formatoTiempo);
+
+        if(tiempoEnMilisegundos<10000){
+            textTemporizador.setTextColor(Color.RED);
+        }else{
+            textTemporizador.setTextColor(colors);
+        }
+    }
+
     private void comprobar(){
         respondido=true;
+
+        temporizador.cancel();
         RadioButton seleccionado=findViewById(radioGroup.getCheckedRadioButtonId());
         int respuesta=radioGroup.indexOfChild(seleccionado)+1;
         if(respuesta==1){
@@ -146,16 +206,18 @@ public class QuizActivity extends AppCompatActivity {
         }else if(respuesta==4){
             comodin="d";
         }
-        if(comodin.equals(preguntaActual.getOpcionCorrecta())){
-            puntuacion = puntuacion + 3;
-        } else{
-            if (puntuacion > 2){
-                puntuacion = puntuacion - 2;
-            }
-            else {
-                puntuacion = 0;
-            }
+        if(comodin!=null){
+            if(comodin.equals(preguntaActual.getOpcionCorrecta())){
+                puntuacion = puntuacion + 3;
+            } else if(!comodin.equals(preguntaActual.getOpcionCorrecta())){
+                if (puntuacion > 2){
+                    puntuacion = puntuacion - 2;
+                }
+                else {
+                    puntuacion = 0;
+                }
 
+            }
         }
         textPuntos.setText("Puntos: "+ puntuacion);
         mostrarOpcionCorrecta();
@@ -192,5 +254,13 @@ public class QuizActivity extends AppCompatActivity {
 
     private void acabarTest() {
         finish();
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        if(temporizador!=null){
+            temporizador.cancel();
+        }
     }
 }
