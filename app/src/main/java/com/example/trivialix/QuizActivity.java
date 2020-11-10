@@ -26,6 +26,7 @@ public class QuizActivity extends AppCompatActivity {
     private List<Preguntas> listaDePreguntas;
     private ColorStateList colors;
     private int preguntasContestadas, preguntasTotales, puntuacion;
+    private static final int MAX_PREGUNTAS = 10;
     private Preguntas preguntaActual;
     private String comodin;
     private boolean respondido;
@@ -97,7 +98,7 @@ public class QuizActivity extends AppCompatActivity {
         rb4.setTextColor(colors);
         radioGroup.clearCheck();
 
-        if(preguntasContestadas<preguntasTotales){
+        if(preguntasContestadas<MAX_PREGUNTAS){
             preguntaActual=listaDePreguntas.get(preguntasContestadas);
             textEnunciado.setText(preguntaActual.getEnunciado());
             rb1.setText(preguntaActual.getOpcionA());
@@ -106,7 +107,7 @@ public class QuizActivity extends AppCompatActivity {
             rb4.setText(preguntaActual.getOpcionD());
 
             preguntasContestadas++;
-            textContadorPreguntas.setText("Preguntas: "+preguntasContestadas+"/"+preguntasTotales);
+            textContadorPreguntas.setText("Preguntas: "+preguntasContestadas+"/"+MAX_PREGUNTAS);
             respondido=false;
             next.setText("Siguiente");
         }else{
@@ -154,7 +155,7 @@ public class QuizActivity extends AppCompatActivity {
                 rb4.setTextColor(Color.GREEN);
                 break;
         }
-        if(preguntasContestadas<preguntasTotales){
+        if(preguntasContestadas<MAX_PREGUNTAS){
             next.setText("Siguiente");
         }else{
             next.setText("Rendirte");

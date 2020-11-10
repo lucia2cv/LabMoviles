@@ -3,14 +3,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Preguntas implements Parcelable {
-    private int idPregunta;
-    private String enunciado;
-    private String imagen;
-    private String audio;
-    private String opcionA,opcionB,opcionC,opcionD;
-    private String opcionCorrecta;
-    private int tieneImagenOAudio;
-    private int id_tema;
+    private int idPregunta, tieneImagenOAudio, id_tema;
+    private String enunciado, imagen, audio, opcionA,opcionB,opcionC,opcionD, opcionCorrecta;
 
     public Preguntas(int idPregunta, String enunciado, String imagen, String audio, String opcionA, String opcionB, String opcionC, String opcionD, String opcionCorrecta, int tieneImagenOAudio, int id_tema) {
         this.idPregunta = idPregunta;
