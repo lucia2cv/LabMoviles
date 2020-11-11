@@ -92,7 +92,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         if ((!nombreUsuario.equals("")) && (!password.equals(""))){
             if (dbGlobal.estaRegistrado(nombreUsuario)){
                 if (dbGlobal.comprobarLogin(nombreUsuario, password)){
-                    Toast.makeText(this,"Bienvenido" + nombreUsuario,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Bienvenido " + nombreUsuario,Toast.LENGTH_SHORT).show();
                     nombreIntroducido.setText("Nombre");
                     passwordIntroducida.setText("");
                     Intent i= new Intent(this, MainActivity.class);
@@ -116,7 +116,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         nombreUsuario = nombreIntroducido.getText().toString();
         password = passwordIntroducida.getText().toString();
         if ((!nombreUsuario.equals("")) && (!password.equals(""))){
-            boolean borrado = dbGlobal.borrarUsuario(nombreUsuario);
+            boolean borrado = dbGlobal.borrarUsuario(nombreUsuario, password);
             if (borrado){
                 Toast.makeText(this,"Usuario eliminado", Toast.LENGTH_SHORT).show();
                 nombreIntroducido.setText("Nombre");

@@ -200,9 +200,10 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     public boolean comprobarLogin(String nombre, String password){
         if (estaRegistrado(nombre)) {
-            String myQuery = "select * from Usuarios where nombreUsuario= '" + nombre + "'";
+            String myQuery = "select password from Usuarios where nombreUsuario= '" + nombre + "'";
             Cursor cursor = BBDD.rawQuery(myQuery, null);
-            String passwordBBDD =  cursor.getString(cursor.getColumnIndex("password"));
+            cursor.moveToFirst();
+            String passwordBBDD =  cursor.getString(0);
             if (passwordBBDD.equals(password)){
                 return true;
             }
@@ -226,17 +227,14 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     }
     //Dar de baja un usuario
-    public boolean borrarUsuario(String nombreUsuario){
-        try{
+    public boolean borrarUsuario(String nombreUsuario, String password){
+        if(comprobarLogin(nombreUsuario, password)){
             String myQuery = "delete from Usuarios  where nombreUsuario = '" + nombreUsuario +"'";
             BBDD.execSQL(myQuery);
             return true;
-        } catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            System.out.println("Usuario no encontrado");
+        } else{
             return false;
         }
-
 
     }
 }
