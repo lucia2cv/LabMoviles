@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -48,8 +49,8 @@ public class QuizActivity extends AppCompatActivity {
     private CountDownTimer temporizador;
 
 
-   /* private SoundPool soundPool;
-    int sonidoTrombon;*/
+   private SoundPool soundPool;
+    int sonidoTrombon;
 
     @Override
 
@@ -82,9 +83,9 @@ public class QuizActivity extends AppCompatActivity {
 
         textViewTematica.setText("Temática: " + tematicaName);
 
-      /* soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
+      soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
 
-        sonidoTrombon = soundPool.load(this, R.raw.sadtrombone, 1);*/
+        sonidoTrombon = soundPool.load(this, R.raw.sadtrombone2, 1);
         if(savedInstanceState==null){
             if (dbGlobal != null){
                 listaDePreguntas=dbGlobal.getAllPreguntas(tematicaid);
@@ -216,20 +217,28 @@ public class QuizActivity extends AppCompatActivity {
         if(comodin!=null){
             if(comodin.equals(preguntaActual.getOpcionCorrecta())){
                 puntuacion = puntuacion + 3;
+                MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
+                mp.start();
             } else if(!comodin.equals(preguntaActual.getOpcionCorrecta())){
-
-              /* soundPool.play(sonidoTrombon,30,30,1, 0 , 0);*/
                 if (puntuacion > 2){
                     puntuacion = puntuacion - 2;
+                    MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
+                    mp.start();
                 }
                 else {
                     puntuacion = 0;
+                    MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
+                    mp.start();
                 }
 
             }
         }
         textPuntos.setText("Puntos: "+ puntuacion);
         mostrarOpcionCorrecta();
+    }
+
+    private void acertaste() {
+        soundPool.play(sonidoTrombon,30,30,1, 0 , 0);
     }
 
 
