@@ -30,9 +30,11 @@ public class BaseDatos extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         //Para los cambios en esctructura
     }
+
+
     public void createDataBase () throws IOException {
         boolean bbddExiste = checkDataBase();
         if (bbddExiste){
@@ -198,9 +200,9 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     public boolean comprobarLogin(String nombre, String password){
         if (estaRegistrado(nombre)) {
-            String myQuery = "select * from Usuarios where nombre = " + nombre;
+            String myQuery = "select * from Usuarios where nombreUsuario= '" + nombre + "'";
             Cursor cursor = BBDD.rawQuery(myQuery, null);
-            String passwordBBDD = cursor.getString(cursor.getColumnIndex("password"));
+            String passwordBBDD =  cursor.getString(cursor.getColumnIndex("password"));
             if (passwordBBDD.equals(password)){
                 return true;
             }
@@ -215,7 +217,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public boolean crearUsuario(String nombre, String password){
         int id_user = getAllUsuarios().size() + 1;
         if (!estaRegistrado(nombre)) {
-            String myQuery = "insert into Usuarios (id_usuario, nombreUsuario, password, record) values (" + String.valueOf(id_user) + ", " + nombre + ", " + password + ", NULL)";
+            String myQuery = "insert into Usuarios (id_usuario, nombreUsuario, password, record) values (" + String.valueOf(id_user) + ", " + "'"+ nombre + "', '" + password + "', NULL)";
             Cursor cursor = BBDD.rawQuery(myQuery, null);
             cursor.close();
             return true;
@@ -227,7 +229,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     //Dar de baja un usuario
     public boolean borrarUsuario(String nombreUsuario){
         try{
-            String myQuery = "delete from Usuarios  where nombreUsuario = " + nombreUsuario;
+            String myQuery = "delete from Usuarios  where nombreUsuario = '" + nombreUsuario +"'";
             Cursor cursor = BBDD.rawQuery(myQuery, null);
             cursor.close();
             return true;

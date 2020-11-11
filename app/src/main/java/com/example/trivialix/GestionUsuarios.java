@@ -32,7 +32,6 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         Intent recibe = getIntent();
         bolsa = recibe.getExtras();
         opcion = bolsa.getInt("opcion");
-
         atras_datos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,44 +43,71 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
             public void onClick(View v) {
                 switch (opcion){
                     case 1: crearUsuario();
-                    case 2: hacerLogin();
+                        break;
+                    case 2:  hacerLogin();
+                        break;
                     case 3: bajaUsuario();
+                     break;
                 }
             }
         });
 
 
+
     }
     @Override
     public void onClick(View v) {
-
     }
 
     public void crearUsuario(){
         nombreUsuario = nombreIntroducido.getText().toString();
         password = passwordIntroducida.getText().toString();
-        boolean correcto = dbGlobal.crearUsuario(nombreUsuario, password);
-        if (correcto){
+        if ((!nombreUsuario.equals("")) && (!password.equals(""))){
+            boolean correcto = dbGlobal.crearUsuario(nombreUsuario, password);
+            if (correcto){
 
-            Toast.makeText(this,"Registro correcto",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Registro correcto",Toast.LENGTH_SHORT).show();
+                nombreIntroducido.setText("Nombre");
+                passwordIntroducida.setText("");
+                Intent i= new Intent(this, MainActivity.class);
+                i.putExtra("nombreUsuario", nombreUsuario);
+                startActivity(i);
 
-        } else {
-            Toast.makeText(this,"El usuario ya estaba registrado",Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(this,"El usuario ya estaba registrado",Toast.LENGTH_SHORT).show();
+                nombreIntroducido.setText("Nombre");
+                passwordIntroducida.setText("");
+            }
+        } else{
+            Toast.makeText(this,"Introduzca el nombre y la contraseña",Toast.LENGTH_SHORT).show();
         }
+
 
 
     }
     public void hacerLogin(){
         nombreUsuario = nombreIntroducido.getText().toString();
         password = passwordIntroducida.getText().toString();
-        if (dbGlobal.estaRegistrado(nombreUsuario)){
-            if (dbGlobal.comprobarLogin(nombreUsuario, password)){
-                Toast.makeText(this,"Bienvenido" + nombreUsuario,Toast.LENGTH_SHORT).show();
-            } else{
-                Toast.makeText(this,"Usuario o contraseña incorrectos",Toast.LENGTH_SHORT).show();
+        if ((!nombreUsuario.equals("")) && (!password.equals(""))){
+            if (dbGlobal.estaRegistrado(nombreUsuario)){
+                if (dbGlobal.comprobarLogin(nombreUsuario, password)){
+                    Toast.makeText(this,"Bienvenido" + nombreUsuario,Toast.LENGTH_SHORT).show();
+                    nombreIntroducido.setText("Nombre");
+                    passwordIntroducida.setText("");
+                    Intent i= new Intent(this, MainActivity.class);
+                    i.putExtra("nombreUsuario", nombreUsuario);
+                    startActivity(i);
+                } else{
+                    Toast.makeText(this,"Usuario o contraseña incorrectos",Toast.LENGTH_SHORT).show();
+                    nombreIntroducido.setText("Nombre");
+                    passwordIntroducida.setText("");
+                }
             }
-        }
 
+        } else{
+            Toast.makeText(this,"Introduzca el nombre y la contraseña",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void bajaUsuario(){
@@ -89,13 +115,23 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         passwordIntroducida = findViewById(R.id.password);
         nombreUsuario = nombreIntroducido.getText().toString();
         password = passwordIntroducida.getText().toString();
-        boolean borrado = dbGlobal.borrarUsuario(nombreUsuario);
-        if (borrado){
-            Toast.makeText(this,"Usuario eliminado", Toast.LENGTH_SHORT).show();
+        if ((!nombreUsuario.equals("")) && (!password.equals(""))){
+            boolean borrado = dbGlobal.borrarUsuario(nombreUsuario);
+            if (borrado){
+                Toast.makeText(this,"Usuario eliminado", Toast.LENGTH_SHORT).show();
+                nombreIntroducido.setText("Nombre");
+                passwordIntroducida.setText("");
+            } else{
+                Toast.makeText(this,"Usuario no encontrado", Toast.LENGTH_SHORT).show();
+                nombreIntroducido.setText("Nombre");
+                passwordIntroducida.setText("");
+            }
+
         } else{
-            Toast.makeText(this,"Usuario no encontrado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Introduzca el nombre y la contraseña",Toast.LENGTH_SHORT).show();
         }
     }
+
     public void volver(){
         Intent i=new Intent(this,OpcionesUsuarios.class);
         startActivity(i);
