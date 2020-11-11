@@ -84,7 +84,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
 
                 Toast.makeText(this,"Registro correcto",Toast.LENGTH_SHORT).show();
                 nombreIntroducido.setText("Nombre");
-                passwordIntroducida.setText("");
+                passwordIntroducida.setText("contraseña");
                 Intent i= new Intent(this, MainActivity.class);
                 i.putExtra("nombreUsuario", nombreUsuario);
                 startActivity(i);
@@ -93,7 +93,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
             } else {
                 Toast.makeText(this,"El usuario ya estaba registrado",Toast.LENGTH_SHORT).show();
                 nombreIntroducido.setText("Nombre");
-                passwordIntroducida.setText("");
+                passwordIntroducida.setText("contraseña");
             }
         } else{
             Toast.makeText(this,"Introduzca el nombre y la contraseña",Toast.LENGTH_SHORT).show();
@@ -110,14 +110,14 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
                 if (dbGlobal.comprobarLogin(nombreUsuario, password)){
                     Toast.makeText(this,"Bienvenido " + nombreUsuario,Toast.LENGTH_SHORT).show();
                     nombreIntroducido.setText("Nombre");
-                    passwordIntroducida.setText("");
+                    passwordIntroducida.setText("contraseña");
                     Intent i= new Intent(this, MainActivity.class);
                     i.putExtra("nombreUsuario", nombreUsuario);
                     startActivity(i);
                 } else{
                     Toast.makeText(this,"Usuario o contraseña incorrectos",Toast.LENGTH_SHORT).show();
                     nombreIntroducido.setText("Nombre");
-                    passwordIntroducida.setText("");
+                    passwordIntroducida.setText("contraseña");
                 }
             }
 
@@ -136,11 +136,11 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
             if (borrado){
                 Toast.makeText(this,"Usuario eliminado", Toast.LENGTH_SHORT).show();
                 nombreIntroducido.setText("Nombre");
-                passwordIntroducida.setText("");
+                passwordIntroducida.setText("contraseña");
             } else{
                 Toast.makeText(this,"Usuario no encontrado", Toast.LENGTH_SHORT).show();
                 nombreIntroducido.setText("Nombre");
-                passwordIntroducida.setText("");
+                passwordIntroducida.setText("contraseña");
             }
 
         } else{
