@@ -23,7 +23,7 @@ import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private static final long CONTADORMILISEGUNDOS  =11000;
+    private static final long CONTADORMILISEGUNDOS  =30000;
     private static final String LISTAPREGUNTAS = "keyQuestionList";
     private static final String PREGUNTASCONTADOR = "keyQuestionCount";
     private static final String SCORE = "score";
