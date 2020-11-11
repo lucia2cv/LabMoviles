@@ -42,6 +42,7 @@
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPassword"
+        android:text="@string/contrase_a"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -59,25 +60,28 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/nombre"
-        app:layout_constraintBottom_toTopOf="@+id/passText"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="LabelFor" />
 
+
     <TextView
-        android:id="@+id/passText"
-        android:layout_width="204dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="236dp"
+        android:id="@+id/accion_usuario"
+        android:layout_width="310dp"
+        android:layout_height="73dp"
         android:gravity="center_horizontal"
-        android:text="@string/contrase_a"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        android:text="@string/acci_n_a_realizar"
+        android:textColor="#020202"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/nombreUsuario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.776" />
 
 </android.support.constraint.ConstraintLayout>

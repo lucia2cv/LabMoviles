@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class GestionUsuarios extends AppCompatActivity implements View.OnClickListener {
     private Button atras_datos, aceptar_datos;
     private EditText passwordIntroducida, nombreIntroducido;
+    private TextView accionUsuario;
     private String nombreUsuario, password;
     private int opcion;
     private BaseDatos dbGlobal;
@@ -29,6 +31,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         aceptar_datos = findViewById(R.id.aceptar_datos);
         nombreIntroducido = findViewById(R.id.nombreUsuario);
         passwordIntroducida = findViewById(R.id.password);
+        accionUsuario = findViewById(R.id.accion_usuario);
         Intent recibe = getIntent();
         bolsa = recibe.getExtras();
         opcion = bolsa.getInt("opcion");
@@ -41,18 +44,31 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         aceptar_datos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (opcion){
-                    case 1: crearUsuario();
+               switch (opcion){
+                    case 1:
+                        crearUsuario();
                         break;
-                    case 2:  hacerLogin();
+                    case 2:
+                        hacerLogin();
                         break;
-                    case 3: bajaUsuario();
-                     break;
+                    case 3:
+                        bajaUsuario();
+                        break;
                 }
             }
         });
 
-
+        switch (opcion){
+            case 1:
+                accionUsuario.setText("Regístrate");
+                break;
+            case 2:
+                accionUsuario.setText("Accede a tu cuenta");
+                break;
+            case 3:
+                accionUsuario.setText("Borra tu cuenta");
+                break;
+        }
 
     }
     @Override

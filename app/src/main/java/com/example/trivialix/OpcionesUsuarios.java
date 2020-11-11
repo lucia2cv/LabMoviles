@@ -5,10 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.List;
 
 public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickListener {
     private Button atras_login, nuevoUsuario, borrarUsuario, acceder;
@@ -17,7 +13,7 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.login);
+        setContentView(R.layout.opciones_usuarios);
         super.onCreate(savedInstanceState);
         atras_login = findViewById(R.id.volver_login);
         nuevoUsuario = findViewById(R.id.registro);
