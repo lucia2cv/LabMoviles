@@ -57,7 +57,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         SQLiteDatabase checkDB = null;
         try{
             String path = DB_PATH + DB_NOMBRE;
-            checkDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
+            checkDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
         } catch (SQLiteException e){
             System.out.println("Base de datos no creada todavía");
         }
@@ -70,7 +70,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     public void openDataBase() throws SQLException {
         String path = DB_PATH + DB_NOMBRE;
-        BBDD = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
+        BBDD = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
     }
     public synchronized void close() {
 
@@ -119,7 +119,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public List<Preguntas>getAllPreguntas(int id_tematica){
         List<Preguntas>listaDePreguntas=new ArrayList<>();
         String myQuery = "SELECT * FROM  Preguntas";
-        BBDD=getWritableDatabase();
+        BBDD=getReadableDatabase();
         switch (id_tematica){
             case 1 : myQuery = "SELECT * FROM  Preguntas WHERE id_tema = 1";
                     break;
@@ -178,9 +178,9 @@ public class BaseDatos extends SQLiteOpenHelper {
     }
 
     //Obtener una lista de los nombres de los usuarios
-    public ArrayList nombresUsuario(){
+    public ArrayList<String> nombresUsuario(){
         List<Usuarios> usuarios = getAllUsuarios();
-        ArrayList nombresUsuarios = new ArrayList();
+        ArrayList<String> nombresUsuarios = new ArrayList<>();
         for (Usuarios u: usuarios){
             nombresUsuarios.add(u.getNombre());
 
@@ -191,7 +191,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     //Comprobar si un usuario está registrado
     public boolean estaRegistrado(String nombreUser){
-        ArrayList nombres = nombresUsuario();
+        ArrayList<String> nombres = nombresUsuario();
         return  nombres.contains(nombreUser);
 
     }
@@ -218,8 +218,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         int id_user = getAllUsuarios().size() + 1;
         if (!estaRegistrado(nombre)) {
             String myQuery = "insert into Usuarios (id_usuario, nombreUsuario, password, record) values (" + String.valueOf(id_user) + ", " + "'"+ nombre + "', '" + password + "', NULL)";
-            Cursor cursor = BBDD.rawQuery(myQuery, null);
-            cursor.close();
+            BBDD.execSQL(myQuery);
             return true;
         } else{
             return false;
@@ -230,8 +229,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public boolean borrarUsuario(String nombreUsuario){
         try{
             String myQuery = "delete from Usuarios  where nombreUsuario = '" + nombreUsuario +"'";
-            Cursor cursor = BBDD.rawQuery(myQuery, null);
-            cursor.close();
+            BBDD.execSQL(myQuery);
             return true;
         } catch (SQLException sqlException){
             sqlException.printStackTrace();
