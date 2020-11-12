@@ -51,6 +51,7 @@ public class QuizActivity extends AppCompatActivity {
 
    private SoundPool soundPool;
     int sonidoTrombon;
+    int sonidoAplauso;
 
     @Override
 
@@ -83,9 +84,10 @@ public class QuizActivity extends AppCompatActivity {
 
         textViewTematica.setText("Temática: " + tematicaName);
 
-      soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
+         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
 
         sonidoTrombon = soundPool.load(this, R.raw.sadtrombone2, 1);
+        sonidoAplauso = soundPool.load(this,R.raw.aplausos3,1);
         if(savedInstanceState==null){
             if (dbGlobal != null){
                 listaDePreguntas=dbGlobal.getAllPreguntas(tematicaid);
@@ -217,18 +219,20 @@ public class QuizActivity extends AppCompatActivity {
         if(comodin!=null){
             if(comodin.equals(preguntaActual.getOpcionCorrecta())){
                 puntuacion = puntuacion + 3;
-                MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
-                mp.start();
+                /*MediaPlayer mp=MediaPlayer.create(this,R.raw.correcto3);
+                mp.start();*/
+                acertaste();
             } else if(!comodin.equals(preguntaActual.getOpcionCorrecta())){
+                    fallaste();
                 if (puntuacion > 2){
                     puntuacion = puntuacion - 2;
-                    MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
-                    mp.start();
+                    /*MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
+                    mp.start();*/
                 }
                 else {
                     puntuacion = 0;
-                    MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
-                    mp.start();
+                   /* MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
+                    mp.start();*/
                 }
 
             }
@@ -238,6 +242,10 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void acertaste() {
+        soundPool.play(sonidoAplauso,30,30,1, 0 , 0);
+    }
+
+    private void fallaste() {
         soundPool.play(sonidoTrombon,30,30,1, 0 , 0);
     }
 
