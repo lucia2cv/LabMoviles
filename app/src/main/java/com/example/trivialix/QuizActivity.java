@@ -24,7 +24,7 @@ import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private static final long CONTADORMILISEGUNDOS  =30000;
+    private static final long CONTADORMILISEGUNDOS  =12000;
     private static final String LISTAPREGUNTAS = "keyQuestionList";
     private static final String PREGUNTASCONTADOR = "keyQuestionCount";
     private static final String SCORE = "score";
@@ -52,6 +52,7 @@ public class QuizActivity extends AppCompatActivity {
    private SoundPool soundPool;
     int sonidoTrombon;
     int sonidoAplauso;
+    int sonidoTiempo;
 
     @Override
 
@@ -88,6 +89,7 @@ public class QuizActivity extends AppCompatActivity {
 
         sonidoTrombon = soundPool.load(this, R.raw.sadtrombone2, 1);
         sonidoAplauso = soundPool.load(this,R.raw.aplausos3,1);
+        sonidoTiempo=soundPool.load(this,R.raw.saw,1);
         if(savedInstanceState==null){
             if (dbGlobal != null){
                 listaDePreguntas=dbGlobal.getAllPreguntas(tematicaid);
@@ -173,6 +175,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private void tiempoMaximo() {
         temporizador=new CountDownTimer(tiempoEnMilisegundos,1000) {
+
             @Override
             public void onTick(long millisUntilFinished) {
                 tiempoEnMilisegundos=millisUntilFinished;
@@ -186,6 +189,7 @@ public class QuizActivity extends AppCompatActivity {
                 comprobar();
             }
         }.start();
+
     }
 
     private void actualizarTemporizador() {
@@ -194,8 +198,9 @@ public class QuizActivity extends AppCompatActivity {
         String formatoTiempo=String.format(Locale.getDefault(),"%02d:%02d", minutos, segundos);
         textTemporizador.setText(formatoTiempo);
 
-        if(tiempoEnMilisegundos<10000){
+        if(tiempoEnMilisegundos<11000){
             textTemporizador.setTextColor(Color.RED);
+
         }else{
             textTemporizador.setTextColor(colors);
         }
@@ -224,6 +229,7 @@ public class QuizActivity extends AppCompatActivity {
                 acertaste();
             } else if(!comodin.equals(preguntaActual.getOpcionCorrecta())){
                     fallaste();
+
                 if (puntuacion > 2){
                     puntuacion = puntuacion - 2;
                     /*MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
@@ -247,6 +253,12 @@ public class QuizActivity extends AppCompatActivity {
 
     private void fallaste() {
         soundPool.play(sonidoTrombon,30,30,1, 0 , 0);
+    }
+
+    public void tiempo(){
+       // soundPool.play(sonidoTiempo,30,30,1,0,0);
+        MediaPlayer mp=MediaPlayer.create(this,R.raw.saw);
+        mp.start();
     }
 
 
