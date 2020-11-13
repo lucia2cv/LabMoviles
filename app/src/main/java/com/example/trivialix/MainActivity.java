@@ -21,15 +21,15 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUESTCODEQUIZ=1;
     public static final String ID_TEMATICA="IDTematica";
     public static final String TEMATICA="NombreTematica";
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar myToolBar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolBar);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         tematica=findViewById(R.id.eligeTematica);
         ayuda = findViewById(R.id.ayuda);
         login = findViewById(R.id.login_main);
