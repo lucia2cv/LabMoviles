@@ -24,7 +24,7 @@ import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private static final long CONTADORMILISEGUNDOS  =12000;
+    private static final long CONTADORMILISEGUNDOS  =30000;
     private static final String LISTAPREGUNTAS = "keyQuestionList";
     private static final String PREGUNTASCONTADOR = "keyQuestionCount";
     private static final String SCORE = "score";
@@ -86,6 +86,7 @@ public class QuizActivity extends AppCompatActivity {
         textViewTematica.setText("Temática: " + tematicaName);
 
          soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
+
 
         sonidoTrombon = soundPool.load(this, R.raw.sadtrombone2, 1);
         sonidoAplauso = soundPool.load(this,R.raw.aplausos3,1);
@@ -175,11 +176,17 @@ public class QuizActivity extends AppCompatActivity {
 
     private void tiempoMaximo() {
         temporizador=new CountDownTimer(tiempoEnMilisegundos,1000) {
-
+            int i;
             @Override
             public void onTick(long millisUntilFinished) {
                 tiempoEnMilisegundos=millisUntilFinished;
+
                 actualizarTemporizador();
+                i++;
+                System.out.println(i);
+                if(i==20){
+                    tiempo();
+                }
             }
 
             @Override
@@ -188,8 +195,8 @@ public class QuizActivity extends AppCompatActivity {
                 actualizarTemporizador();
                 comprobar();
             }
-        }.start();
 
+        }.start();
     }
 
     private void actualizarTemporizador() {
@@ -203,6 +210,15 @@ public class QuizActivity extends AppCompatActivity {
 
         }else{
             textTemporizador.setTextColor(colors);
+        }
+
+
+    }
+
+    public void tiempo(){
+        MediaPlayer mp=MediaPlayer.create(this,R.raw.saw);
+        if(!mp.isPlaying()){
+            mp.start();
         }
     }
 
@@ -255,11 +271,7 @@ public class QuizActivity extends AppCompatActivity {
         soundPool.play(sonidoTrombon,30,30,1, 0 , 0);
     }
 
-    public void tiempo(){
-       // soundPool.play(sonidoTiempo,30,30,1,0,0);
-        MediaPlayer mp=MediaPlayer.create(this,R.raw.saw);
-        mp.start();
-    }
+
 
 
     private void mostrarOpcionCorrecta(){
