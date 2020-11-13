@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="MissingClass">
+
         <activity
             android:name="com.example.trivialix.MainActivity"
             android:label="TRIVIALIX">

@@ -3,6 +3,7 @@ package com.example.trivialix;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,11 +22,14 @@ public class MainActivity extends AppCompatActivity {
     public static final String ID_TEMATICA="IDTematica";
     public static final String TEMATICA="NombreTematica";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolBar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolBar);
         tematica=findViewById(R.id.eligeTematica);
         ayuda = findViewById(R.id.ayuda);
         login = findViewById(R.id.login_main);
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
         dbGlobal = iniciarBBDD();
         cargarTematicas();
+
 
     }
 
