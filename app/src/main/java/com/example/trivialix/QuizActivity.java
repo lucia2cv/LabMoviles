@@ -47,7 +47,7 @@ public class QuizActivity extends AppCompatActivity {
     private Intent recibe, vueltaAtras, resultados;
     private BaseDatos dbGlobal;
     private CountDownTimer temporizador;
-
+    private MediaPlayer mp;
 
    private SoundPool soundPool;
     int sonidoTrombon;
@@ -59,6 +59,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        mp=MediaPlayer.create(this,R.raw.sawlarga);
         vueltaAtras=new Intent(this, MainActivity.class);
         resultados=new Intent(this, FinDeJuego.class);
         textViewTematica=findViewById(R.id.tematicaElegida);
@@ -168,9 +169,11 @@ public class QuizActivity extends AppCompatActivity {
             siguiente.setText("Comprobar");
             volver.setText("Abandonar");
             tiempoEnMilisegundos=CONTADORMILISEGUNDOS;
+
             tiempoMaximo();
         }else{
             acabarTest();
+
         }
     }
 
@@ -216,16 +219,19 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void tiempo(){
-        MediaPlayer mp=MediaPlayer.create(this,R.raw.saw);
-        if(!mp.isPlaying()){
-            mp.start();
-        }
+
+       if(mp.isPlaying()){
+           mp.stop();
+       }else{
+           mp.start();
+       }
     }
 
     private void comprobar(){
         respondido=true;
 
         temporizador.cancel();
+        tiempo();
         RadioButton seleccionado=findViewById(radioGroup.getCheckedRadioButtonId());
         int respuesta=radioGroup.indexOfChild(seleccionado)+1;
         if(respuesta==1){
