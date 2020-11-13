@@ -59,7 +59,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        mp=MediaPlayer.create(this,R.raw.saw);
+        mp=MediaPlayer.create(this,R.raw.sawlarga);
         vueltaAtras=new Intent(this, MainActivity.class);
         resultados=new Intent(this, FinDeJuego.class);
         textViewTematica=findViewById(R.id.tematicaElegida);
@@ -179,7 +179,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private void tiempoMaximo() {
         temporizador=new CountDownTimer(tiempoEnMilisegundos,1000) {
-            int i=1;
+            int i;
             @Override
             public void onTick(long millisUntilFinished) {
                 tiempoEnMilisegundos=millisUntilFinished;
@@ -187,7 +187,7 @@ public class QuizActivity extends AppCompatActivity {
                 actualizarTemporizador();
                 i++;
                 System.out.println(i);
-                if(i==21){
+                if(i==20){
                     tiempo();
                 }
             }
