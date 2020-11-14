@@ -54,9 +54,9 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         nombre1.setText(user1.getNombre());
         nombre2.setText(user2.getNombre());
         nombre3.setText(user3.getNombre());
-        ranking1.setText(Integer.toString(user1.getRecord()));
-        ranking2.setText(Integer.toString(user2.getRecord()));
-        ranking3.setText(Integer.toString(user3.getRecord()));
+        ranking1.setText(Integer.toString(user1.getRecord()) + " puntos");
+        ranking2.setText(Integer.toString(user2.getRecord())+ " puntos");
+        ranking3.setText(Integer.toString(user3.getRecord())+ " puntos");
 
         recibe=getIntent();
         bolsa=recibe.getExtras();
