@@ -56,5 +56,15 @@
     <string name="nombre">Nombre</string>
     <string name="bienvenido_a_trivialix_trivialix_es_una_aplicaci_n_que_pondr_a_prueba_tus_conocimientos_de_series_pel_culas_m_sica_y_videojuegos_est_s_preparado_puedes_jugar_registrado_o_sin_registrar_para_registrarte_s_lo_tienes_que_pinchar_en_reg_strate_e_introducir_un_nombre_de_usuario_que_no_exita_ya_y_una_contrase_a_si_ya_estabas_registrado_pero_no_recuerdas_tu_contrase_a_a_la_hora_de_hacer_login_pinchando_en_entrar_pulsa_olvid_mi_contrase_a_e_introduce_una_nueva_sin_embargo_si_est_s_registrado_y_recuerdas_tu_contrase_a_basta_con_que_introduzcas_esos_datos_en_los_campos_habilitados_para_ello_que_aparecen_cuando_pulsas_en_entrar_jugar_en_trivialix_es_muy_sencillo_elige_la_tem_tica_que_m_s_te_guste_y_prep_rate_para_contestar_a_varias_preguntas_de_diferentes_niveles_las_acertar_s_todas_al_final_de_cada_partida_encontrar_s_un_gif_y_tu_puntuaci_n_te_rega_ar_michael_scott_conseguir_s_la_aprobaci_n_del_capit_n_holt_o_tal_vez_jay_gatsby_interpretado_por_leonardo_dicaprio_celebrar_tu_xito_tambi_n_estar_disponible_una_lista_con_el_nombre_y_las_puntuaciones_de_los_5_mejores_jugadores_de_esa_categor_a_ser_s_t_uno_de_ellos_no_pierdas_m_s_tiempo_y_desc_brelo">¡Bienvenido a Trivialix! Trivialix es una aplicación que pondrá a prueba tus conocimientos de series, películas, música y videojuegos. ¿Estás preparado? Puedes jugar registrado o sin registrar. Para registrarte sólo tienes que pinchar en Regístratee introducir un nombre de usuario (que no exita ya) y una contraseña. Si ya estabas registrado pero no recuerdas tu contraseña, a la hora de hacer login(pinchando en Entrar) pulsa Olvidé mi contraseñae introduce una nueva. Sin embargo si estás registrado y recuerdas tu contraseña, basta con que introduzcas esos datos en los campos habilitados para ello que aparecen cuando pulsas en Entrar. ¡Jugar en Trivialix es muy sencillo! Elige la temática que más te guste y prepárate para contestar a varias preguntas de diferentes niveles, ¿las acertarás todas? Al final de cada partida encontrarás un GIF y tu puntuación. ¿Te regañará Michael Scott? ¿Conseguirás la aprobación del Capitán Holt? ¿O tal vez Jay Gatsby interpretado por Leonardo DiCaprio celebrará tu éxito? También estará disponible una lista con el nombre y las puntuaciones de los 5 mejores jugadores de esa categoría, ¿serás tú uno de ellos? ¡No pierdas más tiempo y descúbrelo!</string>
     <string name="acci_n_a_realizar">Acción a realizar</string>
+    <string name="ver_ranking">Ver ranking</string>
+    <string name="volver">Volver</string>
+    <string name="top_3_mejores_jugadores">Top 3 mejores jugadores</string>
+    <string name="usuario_1">Usuario 1</string>
+    <string name="tu_puntuaci_n">Tu puntuación:</string>
+    <string name="su_record">Su record</string>
+    <string name="usuario_2">Usuario 2</string>
+    <string name="usuario_3">Usuario 3</string>
+    <string name="usuario">Usuario</string>
+    <string name="seleccione_tem_tica">Seleccione temática:</string>
 
 </resources>

@@ -56,7 +56,8 @@
         ndroid:layout_constraintBottom_toBottomOf="parent"
         ndroid:layout_constraintEnd_toEndOf="parent"
         ndroid:layout_constraintStart_toStartOf="parent"
-        ndroid:layout_constraintTop_toBottomOf="@+id/buenaPuntuacion" />
+        ndroid:layout_constraintTop_toTopOf="parent"
+        ndroid:layout_constraintVertical_bias="0.909" />
 
     <TextView
         android:id="@+id/puntuacionFinal"
@@ -73,4 +74,17 @@
         ndroid:layout_constraintTop_toTopOf="parent"
         ndroid:layout_constraintVertical_bias="0.732"
         tools:layout_editor_absoluteX="0dp" tools:targetApi="jelly_bean"/>
+
+    <Button
+        android:id="@+id/ranking_buttom"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:text="@string/ver_ranking"
+        android:textColor="#FFFFFF"
+        ndroid:layout_constraintBottom_toTopOf="@+id/volver"
+        ndroid:layout_constraintEnd_toEndOf="parent"
+        ndroid:layout_constraintStart_toStartOf="parent"
+        ndroid:layout_constraintTop_toBottomOf="@+id/puntuacionFinal"
+        ndroid:layout_constraintVertical_bias="0.97" />
 </android.support.constraint.ConstraintLayout>

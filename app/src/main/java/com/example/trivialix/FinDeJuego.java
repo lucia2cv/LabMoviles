@@ -12,12 +12,13 @@ import android.widget.Toast;
 import pl.droidsonroids.gif.GifImageView;
 
 public class FinDeJuego extends AppCompatActivity implements View.OnClickListener {
-    private Button sig,atras;
+    private Button verRanking,atras;
     private TextView mostrarPuntuacion;
     private int puntuacion=0;
     private Intent i,recibe,vueltaAtras;
     private Bundle bolsa;
     private GifImageView gifBuenaPuntacion,gifMalaPuntacion, gifPuntacionNormal;
+    private  String nombreUsuario;
 
 
     @SuppressLint("SetTextI18n")
@@ -25,9 +26,8 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.findeljuego);
-        vueltaAtras=new Intent(FinDeJuego.this,MainActivity.class);
         atras=findViewById(R.id.volver);
-        atras.setOnClickListener(this);
+        verRanking= findViewById(R.id.ranking_buttom);
         mostrarPuntuacion=findViewById(R.id.puntuacionFinal);
         gifBuenaPuntacion=findViewById(R.id.buenaPuntuacion);
         gifMalaPuntacion=findViewById(R.id.malaPuntuacion);
@@ -35,6 +35,19 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
         gifMalaPuntacion.setVisibility(View.INVISIBLE);
         gifBuenaPuntacion.setVisibility(View.INVISIBLE);
         gifPuntacionNormal.setVisibility(View.INVISIBLE);
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                volver();
+            }
+        });
+
+        verRanking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarRanking();
+            }
+        });
 
         try {
         }catch(Exception e){
@@ -62,6 +75,17 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+    }
+
+    public void volver(){
+        vueltaAtras=new Intent(FinDeJuego.this,MainActivity.class);
         startActivity(vueltaAtras);
+    }
+
+    public void mostrarRanking(){
+        Intent i=new Intent(FinDeJuego.this,RankingActivity.class);
+        i.putExtra("puntuacion",puntuacion);
+        //i.putExtra("usuario",nombreUsuario);
+        startActivity(i);
     }
 }

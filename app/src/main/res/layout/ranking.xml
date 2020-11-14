@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pop_corn_wallpaper">
+
+    <Button
+        android:id="@+id/volver_ranking"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_x="37dp"
+        android:layout_y="502dp"
+        android:background="#000000"
+        android:text="@string/volver"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.187" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="236dp"
+        android:layout_height="243dp"
+        android:layout_marginBottom="184dp"
+        android:background="#F1EFEF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rankingText"
+        app:layout_constraintVertical_bias="0.896">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/nombre1"
+                android:gravity="center_horizontal"
+                android:padding="30dip"
+                android:text="@string/usuario_1" />
+
+            <TextView
+                android:id="@+id/ranking1"
+                android:gravity="center_horizontal"
+                android:padding="30dip"
+                android:text="@string/su_record" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/nombre2"
+                android:gravity="center_horizontal"
+                android:padding="30dip"
+                android:text="@string/usuario_2" />
+
+            <TextView
+                android:id="@+id/ranking2"
+                android:gravity="center_horizontal"
+                android:padding="30dip"
+                android:text="@string/su_record" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/nombre3"
+                android:gravity="center_horizontal"
+                android:padding="30dip"
+                android:text="@string/usuario_3" />
+
+            <TextView
+                android:id="@+id/ranking3"
+                android:gravity="center_horizontal"
+                android:padding="30dip"
+                android:text="@string/su_record" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/rankingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/top_3_mejores_jugadores"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.283" />
+
+    <TextView
+        android:id="@+id/puntuacion_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tu_puntuaci_n"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/rankingText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.897" />
+
+    <TextView
+        android:id="@+id/user_ranking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/usuario"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/puntuacion_usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913" />
+</android.support.constraint.ConstraintLayout>

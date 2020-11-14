@@ -1,6 +1,8 @@
 package com.example.trivialix;
 
-public class Usuarios {
+
+
+public class Usuarios implements Comparable {
     private int id_user, record;
     private String nombre, password;
 
@@ -42,5 +44,12 @@ public class Usuarios {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Usuarios otro = (Usuarios) o;
+        return Math.max(record, otro.record);
+
     }
 }

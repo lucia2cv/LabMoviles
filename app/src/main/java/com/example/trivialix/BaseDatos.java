@@ -7,11 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class BaseDatos extends SQLiteOpenHelper {
@@ -235,6 +238,29 @@ public class BaseDatos extends SQLiteOpenHelper {
         } else{
             return false;
         }
+
+    }
+
+    //Obtener el mejor jugador por ranking
+    public Usuarios top1player(){
+        List<Usuarios> usuarios = getAllUsuarios();
+        Collections.sort(usuarios);
+        return usuarios.get(0);
+    }
+
+    //Obtener el segundo mejor jugador por ranking
+    public Usuarios top2player(){
+        List<Usuarios> usuarios = getAllUsuarios();
+        Collections.sort(usuarios);
+        return usuarios.get(1);
+
+    }
+
+    //Obtener el tercer mejor jugador por ranking
+    public Usuarios top3player(){
+        List<Usuarios> usuarios = getAllUsuarios();
+        Collections.sort(usuarios);
+        return usuarios.get(2);
 
     }
 }
