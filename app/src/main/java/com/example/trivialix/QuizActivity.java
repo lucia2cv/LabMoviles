@@ -95,6 +95,7 @@ public class QuizActivity extends AppCompatActivity {
                 textUsuario.setText("¡Adelante, " + usuario + " a por todas!");
             }
             resultados.putExtra("nombreUsuario", usuario);
+            vueltaAtras.putExtra("nombreUsuario", usuario);
 
         } catch (Exception o){
             System.out.println("No se ha hecho bien el login");

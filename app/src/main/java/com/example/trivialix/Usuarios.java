@@ -52,4 +52,14 @@ public class Usuarios implements Comparable {
         return Math.max(record, otro.record);
 
     }
+
+    @Override
+    public String toString() {
+        return "Usuarios{" +
+                "id_user=" + id_user +
+                ", record=" + record +
+                ", nombre='" + nombre + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

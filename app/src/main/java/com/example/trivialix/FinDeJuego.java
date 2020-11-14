@@ -72,6 +72,7 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
             try{
                 String usuario = bolsa.getString("nombreUsuario");
                 i.putExtra("nombreUsuario", usuario);
+                vueltaAtras.putExtra("nombreUsuario", usuario);
                 if (usuario != null){
                     dbGlobal.guardarRanking(usuario, puntuacion);
                     System.out.println("Guardado hecho");
