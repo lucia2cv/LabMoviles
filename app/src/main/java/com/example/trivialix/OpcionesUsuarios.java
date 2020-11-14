@@ -8,6 +8,8 @@ import android.widget.Button;
 
 public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickListener {
     private Button atras_login, nuevoUsuario, borrarUsuario, acceder;
+    Bundle bolsa;
+    Intent recibe, hacerLoginIntent;
 
 
 
@@ -19,6 +21,18 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
         nuevoUsuario = findViewById(R.id.registro);
         borrarUsuario = findViewById(R.id.borrar);
         acceder = findViewById(R.id.login);
+        recibe=getIntent();
+        bolsa=recibe.getExtras();
+        try{
+            String usuario = bolsa.getString("nombreUsuario");
+            if (usuario != null){
+                acceder.setText("Cerrar sesión");
+            }
+            hacerLoginIntent.putExtra("nombreUsuario", usuario);
+
+        } catch (Exception o){
+            System.out.println("No se ha hecho bien el login");
+        }
         nuevoUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,9 +71,9 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
 
     }
     public void hacerLogin(){
-        Intent i = new Intent(this, GestionUsuarios.class);
-        i.putExtra("opcion",2);
-        startActivity(i);
+        hacerLoginIntent = new Intent(this, GestionUsuarios.class);
+        hacerLoginIntent.putExtra("opcion",2);
+        startActivity(hacerLoginIntent);
 
 
     }

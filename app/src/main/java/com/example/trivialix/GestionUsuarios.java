@@ -35,6 +35,16 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         Intent recibe = getIntent();
         bolsa = recibe.getExtras();
         opcion = bolsa.getInt("opcion");
+        try{
+            String usuario = bolsa.getString("nombreUsuario");
+            if (usuario != null){
+                cerrarSesion();
+            }
+
+        } catch (Exception o){
+            System.out.println("No se ha hecho bien el login");
+        }
+
         atras_datos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +54,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         aceptar_datos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               switch (opcion){
+                switch (opcion){
                     case 1:
                         crearUsuario();
                         break;
@@ -69,6 +79,9 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
                 accionUsuario.setText("Borra tu cuenta");
                 break;
         }
+
+
+
 
     }
     @Override
@@ -148,6 +161,10 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         } else{
             Toast.makeText(this,"Introduzca el nombre y la contraseña",Toast.LENGTH_SHORT).show();
         }
+    }
+    public void cerrarSesion(){
+        Intent cerrarSesion =new Intent(this, MainActivity.class);
+        startActivity(cerrarSesion);
     }
 
     public void volver(){

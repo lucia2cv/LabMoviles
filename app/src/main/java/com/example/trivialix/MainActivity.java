@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private Intent recibe, inicioIntent;
+    private Intent recibe, inicioIntent, loginIntent;
     private static BaseDatos dbGlobal;
     private Spinner tematica;
     private Button ayuda, login, iniciarJuego;
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         dbGlobal = iniciarBBDD();
         cargarTematicas();
         inicioIntent =new Intent(this,QuizActivity.class);
+        loginIntent =new Intent(this, OpcionesUsuarios.class);
         try{
             recibe=getIntent();
             bolsa=recibe.getExtras();
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 user_nombre_main.setText("Bienvenido, " + usuario);
             }
             inicioIntent.putExtra("nombreUsuario", usuario);
+            loginIntent.putExtra("nombreUsuario", usuario);
         } catch (Exception o){
             System.out.println("No se ha hecho bien el login");
         }
@@ -113,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void hacerLogin(){
-        Intent i=new Intent(this, OpcionesUsuarios.class);
-        startActivity(i);
+
+        startActivity(loginIntent);
     }
 
     private void inicio() {
