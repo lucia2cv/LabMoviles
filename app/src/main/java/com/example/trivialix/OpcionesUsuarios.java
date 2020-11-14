@@ -9,7 +9,7 @@ import android.widget.Button;
 public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickListener {
     private Button atras_login, nuevoUsuario, borrarUsuario, acceder;
     Bundle bolsa;
-    Intent recibe, hacerLoginIntent;
+    Intent recibe, crearUsuarioIntent, hacerLoginIntent, bajaUsuarioIntent, volverIntent;
     BaseDatos dbGlobal;
 
 
@@ -23,6 +23,11 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
         nuevoUsuario = findViewById(R.id.registro);
         borrarUsuario = findViewById(R.id.borrar);
         acceder = findViewById(R.id.login);
+        volverIntent =new Intent(this,MainActivity.class);
+        hacerLoginIntent = new Intent(this, GestionUsuarios.class);
+        bajaUsuarioIntent = new Intent(this, GestionUsuarios.class);
+        crearUsuarioIntent = new Intent(this, GestionUsuarios.class);
+
         recibe=getIntent();
         bolsa=recibe.getExtras();
         try{
@@ -31,6 +36,10 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
                 acceder.setText("Cerrar sesión");
             }
             hacerLoginIntent.putExtra("nombreUsuario", usuario);
+            volverIntent.putExtra("nombreUsuario", usuario);
+            bajaUsuarioIntent.putExtra("nombreUsuario", usuario);
+            crearUsuarioIntent.putExtra("nombreUsuario", usuario);
+
 
         } catch (Exception o){
             System.out.println("No se ha hecho bien el login");
@@ -66,14 +75,12 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
     }
 
     public void crearUsuario(){
-        Intent i = new Intent(this, GestionUsuarios.class);
-        i.putExtra("opcion",1);
-        startActivity(i);
+        crearUsuarioIntent.putExtra("opcion",1);
+        startActivity(crearUsuarioIntent);
 
 
     }
     public void hacerLogin(){
-        hacerLoginIntent = new Intent(this, GestionUsuarios.class);
         hacerLoginIntent.putExtra("opcion",2);
         startActivity(hacerLoginIntent);
 
@@ -81,13 +88,11 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
     }
 
     public void bajaUsuario(){
-        Intent i = new Intent(this, GestionUsuarios.class);
-        i.putExtra("opcion",3);
-        startActivity(i);
+        bajaUsuarioIntent.putExtra("opcion",3);
+        startActivity(bajaUsuarioIntent);
 
     }
     public void volver(){
-        Intent i=new Intent(this,MainActivity.class);
-        startActivity(i);
+        startActivity(volverIntent);
     }
 }

@@ -18,6 +18,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
     private int opcion;
     private BaseDatos dbGlobal;
     private Bundle bolsa;
+    private Intent volverIntent;
 
 
 
@@ -32,12 +33,14 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         nombreIntroducido = findViewById(R.id.nombreUsuario);
         passwordIntroducida = findViewById(R.id.password);
         accionUsuario = findViewById(R.id.accion_usuario);
+        volverIntent=new Intent(this,OpcionesUsuarios.class);
         Intent recibe = getIntent();
         bolsa = recibe.getExtras();
         opcion = bolsa.getInt("opcion");
         try{
             String usuario = bolsa.getString("nombreUsuario");
-            if (dbGlobal.estaRegistrado(usuario)){
+            volverIntent.putExtra("nombreUsuario", usuario);
+            if ((dbGlobal.estaRegistrado(usuario))&& (opcion == 2)){
                 cerrarSesion();
             }
 
@@ -168,7 +171,6 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
     }
 
     public void volver(){
-        Intent i=new Intent(this,OpcionesUsuarios.class);
-        startActivity(i);
+        startActivity(volverIntent);
     }
 }

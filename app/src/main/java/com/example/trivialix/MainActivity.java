@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private Intent recibe, inicioIntent, loginIntent;
+    private Intent recibe, inicioIntent, loginIntent, abrirManualIntent;
     private static BaseDatos dbGlobal;
     private Spinner tematica;
     private Button ayuda, login, iniciarJuego;
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         cargarTematicas();
         inicioIntent =new Intent(this,QuizActivity.class);
         loginIntent =new Intent(this, OpcionesUsuarios.class);
+        abrirManualIntent = new Intent(this, MostrarManual.class);
         try{
             recibe=getIntent();
             bolsa=recibe.getExtras();
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
             inicioIntent.putExtra("nombreUsuario", usuario);
             loginIntent.putExtra("nombreUsuario", usuario);
+            abrirManualIntent.putExtra("nombreUsuario", usuario);
         } catch (Exception o){
             System.out.println("No se ha hecho bien el login");
         }
@@ -110,12 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void abrirManual(){
-        Intent i=new Intent(this, MostrarManual.class);
-        startActivity(i);
+        startActivity(abrirManualIntent);
 
     }
     public void hacerLogin(){
-
         startActivity(loginIntent);
     }
 

@@ -28,6 +28,7 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.findeljuego);
         dbGlobal = MainActivity.getDbGlobal();
         i=new Intent(FinDeJuego.this,RankingActivity.class);
+        vueltaAtras=new Intent(FinDeJuego.this,MainActivity.class);
         atras=findViewById(R.id.volver);
         verRanking= findViewById(R.id.ranking_buttom);
         mostrarPuntuacion=findViewById(R.id.puntuacionFinal);
@@ -71,7 +72,7 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
             }
             try{
                 String usuario = bolsa.getString("nombreUsuario");
-                if (usuario != null){
+                if (dbGlobal.estaRegistrado(usuario)){
                     dbGlobal.guardarRanking(usuario, puntuacion);
                     System.out.println("Guardado hecho");
                 }
@@ -92,7 +93,6 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
     }
 
     public void volver(){
-        vueltaAtras=new Intent(FinDeJuego.this,MainActivity.class);
         startActivity(vueltaAtras);
     }
 
