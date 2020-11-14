@@ -244,14 +244,16 @@ public class BaseDatos extends SQLiteOpenHelper {
     //Obtener el mejor jugador por ranking
     public Usuarios top1player(){
         List<Usuarios> usuarios = getAllUsuarios();
-        Collections.sort(usuarios);
+        Collections.sort(usuarios, new Usuarios.UsuariosComparator());
+        Collections.reverse(usuarios);
         return usuarios.get(0);
     }
 
     //Obtener el segundo mejor jugador por ranking
     public Usuarios top2player(){
         List<Usuarios> usuarios = getAllUsuarios();
-        Collections.sort(usuarios);
+        Collections.sort(usuarios, new Usuarios.UsuariosComparator());
+        Collections.reverse(usuarios);
         return usuarios.get(1);
 
     }
@@ -259,7 +261,8 @@ public class BaseDatos extends SQLiteOpenHelper {
     //Obtener el tercer mejor jugador por ranking
     public Usuarios top3player(){
         List<Usuarios> usuarios = getAllUsuarios();
-        Collections.sort(usuarios);
+        Collections.sort(usuarios, new Usuarios.UsuariosComparator());
+        Collections.reverse(usuarios);
         return usuarios.get(2);
 
     }

@@ -1,8 +1,9 @@
 package com.example.trivialix;
 
 
+import java.util.Comparator;
 
-public class Usuarios implements Comparable {
+public class Usuarios {
     private int id_user, record;
     private String nombre, password;
 
@@ -46,11 +47,14 @@ public class Usuarios implements Comparable {
         this.password = password;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        Usuarios otro = (Usuarios) o;
-        return Math.max(record, otro.record);
+    public static class UsuariosComparator implements Comparator<Usuarios> {
 
+       public UsuariosComparator() {
+        }
+        @Override
+        public int compare(Usuarios o1, Usuarios o2) {
+            return new Integer(o1.getRecord()).compareTo(new Integer(o2.getRecord()));
+        }
     }
 
     @Override
