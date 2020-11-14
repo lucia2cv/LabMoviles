@@ -2,6 +2,7 @@ package com.example.trivialix;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +17,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
     private BaseDatos dbGlobal;
     private Bundle bolsa;
     private Intent recibe, i;
+    private  MediaPlayer sonidoFin;
 
 
     @SuppressLint("SetTextI18n")
@@ -23,11 +25,14 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ranking);
         i=new Intent(this,MainActivity.class);
+        sonidoFin= MediaPlayer.create(this, R.raw.saw);
+        sonidoFin.start();
         dbGlobal = MainActivity.getDbGlobal();
         volver=findViewById(R.id.volver_ranking);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sonidoFin.stop();
                 startActivity(i);
             }
         });
@@ -40,6 +45,8 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         ranking1=findViewById(R.id.ranking1);
         ranking2=findViewById(R.id.ranking2);
         ranking3=findViewById(R.id.ranking3);
+
+
 
         Usuarios user1 = dbGlobal.top1player();
         Usuarios user2 = dbGlobal.top2player();
@@ -74,6 +81,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         } catch (Exception o){
             System.out.println("No se ha hecho bien el login");
         }
+
 
     }
         @Override

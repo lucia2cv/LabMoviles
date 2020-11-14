@@ -2,6 +2,7 @@ package com.example.trivialix;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,6 +20,9 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
     private Bundle bolsa;
     private GifImageView gifBuenaPuntacion,gifMalaPuntacion, gifPuntacionNormal;
     private BaseDatos dbGlobal;
+    private MediaPlayer sonidoMalo;
+    private MediaPlayer sonidoMedio;
+    private MediaPlayer sonidoBueno;
 
 
     @SuppressLint("SetTextI18n")
@@ -38,6 +42,9 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
         gifMalaPuntacion.setVisibility(View.INVISIBLE);
         gifBuenaPuntacion.setVisibility(View.INVISIBLE);
         gifPuntacionNormal.setVisibility(View.INVISIBLE);
+        sonidoMalo= MediaPlayer.create(this, R.raw.nogodpleaseno);
+        sonidoMedio= MediaPlayer.create(this, R.raw.notbad);
+        sonidoBueno= MediaPlayer.create(this, R.raw.aplausos3);
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,10 +72,16 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
 
             if(puntuacion<=14){
                 gifMalaPuntacion.setVisibility(View.VISIBLE);
+                sonidoMalo.start();
+
             } else if(puntuacion <= 24){
                 gifPuntacionNormal.setVisibility(View.VISIBLE);
+                sonidoMedio.start();
+
             }else{
                 gifBuenaPuntacion.setVisibility(View.VISIBLE);
+                sonidoBueno.start();
+
             }
             try{
                 String usuario = bolsa.getString("nombreUsuario");
@@ -93,10 +106,16 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
     }
 
     public void volver(){
+        sonidoMalo.stop();
+        sonidoMedio.stop();
+        sonidoBueno.stop();
         startActivity(vueltaAtras);
     }
 
     public void mostrarRanking(){
+        sonidoMalo.stop();
+        sonidoMedio.stop();
+        sonidoBueno.stop();
         i.putExtra("puntuacion",puntuacion);
         startActivity(i);
     }

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -47,12 +46,10 @@ public class QuizActivity extends AppCompatActivity {
     private Intent recibe, vueltaAtras, resultados;
     private BaseDatos dbGlobal;
     private CountDownTimer temporizador;
-    private MediaPlayer mp;
-
-   private SoundPool soundPool;
-    int sonidoTrombon;
-    int sonidoAplauso;
-    int sonidoTiempo;
+    private SoundPool soundPool;
+    private int sonidoError;
+    private int sonidoCorrecto;
+    private int sonidoTiempo;
 
     @Override
 
@@ -61,7 +58,6 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         textUsuario = findViewById(R.id.user_activity_quiz);
         textUsuario.setVisibility(View.INVISIBLE);
-        mp=MediaPlayer.create(this,R.raw.sawlarga);
         vueltaAtras=new Intent(this, MainActivity.class);
         resultados=new Intent(this, FinDeJuego.class);
         textViewTematica=findViewById(R.id.tematicaElegida);
@@ -105,9 +101,9 @@ public class QuizActivity extends AppCompatActivity {
          soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
 
 
-        sonidoTrombon = soundPool.load(this, R.raw.sadtrombone2, 1);
-        sonidoAplauso = soundPool.load(this,R.raw.aplausos3,1);
-        sonidoTiempo=soundPool.load(this,R.raw.saw,1);
+        sonidoError = soundPool.load(this, R.raw.wrong, 1);
+        sonidoCorrecto = soundPool.load(this,R.raw.correcto2,1);
+        sonidoTiempo=soundPool.load(this,R.raw.alarmalost,1);
         if(savedInstanceState==null){
             if (dbGlobal != null){
                 listaDePreguntas=dbGlobal.getAllPreguntas(tematicaid);
@@ -205,9 +201,6 @@ public class QuizActivity extends AppCompatActivity {
                 actualizarTemporizador();
                 i++;
                 System.out.println(i);
-                if(i==20){
-                    tiempo();
-                }
             }
 
             @Override
@@ -215,6 +208,7 @@ public class QuizActivity extends AppCompatActivity {
                 tiempoEnMilisegundos=0;
                 actualizarTemporizador();
                 comprobar();
+
             }
 
         }.start();
@@ -228,28 +222,18 @@ public class QuizActivity extends AppCompatActivity {
 
         if(tiempoEnMilisegundos<11000){
             textTemporizador.setTextColor(Color.RED);
+            soundPool.play(sonidoTiempo,30,30,1, 0 , 0);
 
-        }else{
+        } else {
             textTemporizador.setTextColor(colors);
         }
 
 
     }
 
-    public void tiempo(){
-
-       if(mp.isPlaying()){
-           mp.stop();
-       }else{
-           mp.start();
-       }
-    }
-
     private void comprobar(){
         respondido=true;
-
         temporizador.cancel();
-        tiempo();
         RadioButton seleccionado=findViewById(radioGroup.getCheckedRadioButtonId());
         int respuesta=radioGroup.indexOfChild(seleccionado)+1;
         if(respuesta==1){
@@ -264,21 +248,15 @@ public class QuizActivity extends AppCompatActivity {
         if(comodin!=null){
             if(comodin.equals(preguntaActual.getOpcionCorrecta())){
                 puntuacion = puntuacion + 3;
-                /*MediaPlayer mp=MediaPlayer.create(this,R.raw.correcto3);
-                mp.start();*/
                 acertaste();
             } else if(!comodin.equals(preguntaActual.getOpcionCorrecta())){
                     fallaste();
 
                 if (puntuacion > 2){
                     puntuacion = puntuacion - 2;
-                    /*MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
-                    mp.start();*/
                 }
                 else {
                     puntuacion = 0;
-                   /* MediaPlayer mp=MediaPlayer.create(this,R.raw.sadtrombone);
-                    mp.start();*/
                 }
 
             }
@@ -288,11 +266,11 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void acertaste() {
-        soundPool.play(sonidoAplauso,30,30,1, 0 , 0);
+        soundPool.play(sonidoCorrecto,30,30,1, 0 , 0);
     }
 
     private void fallaste() {
-        soundPool.play(sonidoTrombon,30,30,1, 0 , 0);
+        soundPool.play(sonidoError,30,30,1, 0 , 0);
     }
 
 
@@ -323,12 +301,20 @@ public class QuizActivity extends AppCompatActivity {
         }else{
             siguiente.setText("Resultados");
             resultados.putExtra("puntuacion",puntuacion);
-            startActivity(resultados);
+            siguiente.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mostrarResultados();
+                }
+            });
         }
     }
 
     private void acabarTest() {
         finish();
+    }
+    private void mostrarResultados(){
+        startActivity(resultados);
     }
 
     @Override
