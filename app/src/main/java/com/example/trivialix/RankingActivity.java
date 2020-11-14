@@ -8,29 +8,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 public class RankingActivity extends AppCompatActivity implements View.OnClickListener {
     private Button volver;
-    private TextView mostrarPuntuacion, nombre1, nombre2, nombre3, ranking1, ranking2, ranking3;
-    private String nombreUsuario;
+    private TextView mostrarPuntuacion, mostrarUsuario, nombre1, nombre2, nombre3, ranking1, ranking2, ranking3;
     private int puntuacion;
     private BaseDatos dbGlobal;
     private Bundle bolsa;
-    private Intent recibe;
+    private Intent recibe, i;
 
 
     @SuppressLint("SetTextI18n")
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ranking);
+        i=new Intent(this,MainActivity.class);
         dbGlobal = MainActivity.getDbGlobal();
         volver=findViewById(R.id.volver_ranking);
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(i);
             }
         });
         mostrarPuntuacion=findViewById(R.id.puntuacion_usuario);
+        mostrarUsuario = findViewById(R.id.user_ranking);
+        mostrarUsuario.setVisibility(View.INVISIBLE);
         nombre1=findViewById(R.id.nombre1);
         nombre2=findViewById(R.id.nombre2);
         nombre3=findViewById(R.id.nombre3);
@@ -59,11 +62,21 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         }
         mostrarPuntuacion.setText("Su puntuación es: " + puntuacion + " puntos");
 
+
+        try{
+            String usuario = bolsa.getString("nombreUsuario");
+            if (usuario != null){
+                mostrarUsuario.setVisibility(View.VISIBLE);
+                mostrarUsuario.setText(usuario + ", estos son los resultados");
+            }
+            i.putExtra("nombreUsuario", usuario);
+
+        } catch (Exception o){
+            System.out.println("No se ha hecho bien el login");
+        }
+
     }
         @Override
         public void onClick (View v){
-            Intent i=new Intent(this,MainActivity.class);
-            i.putExtra("usuario",nombreUsuario);
-            startActivity(i);
         }
     }

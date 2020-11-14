@@ -221,7 +221,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public boolean crearUsuario(String nombre, String password){
         int id_user = getAllUsuarios().size() + 1;
         if (!estaRegistrado(nombre)) {
-            String myQuery = "insert into Usuarios (id_usuario, nombreUsuario, password, record) values (" + String.valueOf(id_user) + ", " + "'"+ nombre + "', '" + password + "', NULL)";
+            String myQuery = "insert into Usuarios (id_usuario, nombreUsuario, password, record) values (" + String.valueOf(id_user) + ", " + "'"+ nombre + "', '" + password + "', 0)";
             BBDD.execSQL(myQuery);
             return true;
         } else{
@@ -263,4 +263,21 @@ public class BaseDatos extends SQLiteOpenHelper {
         return usuarios.get(2);
 
     }
+
+    //Guardar el ranking
+    public void guardarRanking(String nombre, int ranking){
+        String myQuery = "select record from Usuarios where nombreUsuario= '" + nombre + "'";
+        Cursor cursor = BBDD.rawQuery(myQuery, null);
+        cursor.moveToFirst();
+            int recordBBDD =  cursor.getInt(0);
+            if (ranking > recordBBDD) {
+                String myQuery2 = "update Usuarios set record='"+ ranking +"' where nombreUsuario= '" + nombre + "'";
+                BBDD.execSQL(myQuery2);
+
+            }
+        cursor.close();
+
+    }
+
+
 }

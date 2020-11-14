@@ -31,7 +31,7 @@ public class QuizActivity extends AppCompatActivity {
     private static final String TIEMPO = "tiempo";
     private static final String RESPONDER = "responder";
     private long tiempoEnMilisegundos;
-    private TextView textEnunciado, textPuntos, textContadorPreguntas, textViewTematica, textTemporizador;
+    private TextView textEnunciado, textPuntos, textContadorPreguntas, textViewTematica, textTemporizador, textUsuario;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button siguiente, volver;
@@ -41,7 +41,7 @@ public class QuizActivity extends AppCompatActivity {
     private int preguntasContestadas, puntuacion,totalPreguntas,contadorPreguntas;
     private static final int MAX_PREGUNTAS = 10;
     private Preguntas preguntaActual;
-    private String comodin;
+    private String comodin, nombreUsuario;
     private boolean respondido;
     private Bundle bolsa;
     private Intent recibe, vueltaAtras, resultados;
@@ -59,6 +59,8 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        textUsuario = findViewById(R.id.user_activity_quiz);
+        textUsuario.setVisibility(View.INVISIBLE);
         mp=MediaPlayer.create(this,R.raw.sawlarga);
         vueltaAtras=new Intent(this, MainActivity.class);
         resultados=new Intent(this, FinDeJuego.class);
@@ -85,6 +87,19 @@ public class QuizActivity extends AppCompatActivity {
         String tematicaName= recibe.getStringExtra(MainActivity.TEMATICA);
 
         textViewTematica.setText("Temática: " + tematicaName);
+
+        try{
+            String usuario = bolsa.getString("nombreUsuario");
+            if (usuario != null){
+                textUsuario.setVisibility(View.VISIBLE);
+                textUsuario.setText("¡Adelante, " + usuario + " a por todas!");
+            }
+            resultados.putExtra("nombreUsuario", usuario);
+
+        } catch (Exception o){
+            System.out.println("No se ha hecho bien el login");
+        }
+
 
          soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
 
@@ -145,6 +160,8 @@ public class QuizActivity extends AppCompatActivity {
                 }
 
         });
+
+
     }
 
     @SuppressLint("SetTextI18n")

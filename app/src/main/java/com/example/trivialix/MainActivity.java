@@ -8,19 +8,22 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    Intent i;
+    private Intent recibe, inicioIntent;
     private static BaseDatos dbGlobal;
     private Spinner tematica;
     private Button ayuda, login, iniciarJuego;
     public static final int REQUESTCODEQUIZ=1;
     public static final String ID_TEMATICA="IDTematica";
     public static final String TEMATICA="NombreTematica";
+    private Bundle bolsa;
+    private TextView  user_nombre_main;
     Toolbar toolbar;
 
     @Override
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         ayuda = findViewById(R.id.ayuda);
         login = findViewById(R.id.login_main);
         iniciarJuego = findViewById(R.id.iniciarJuego);
+        user_nombre_main = findViewById(R.id.user_nombre_main);
+        user_nombre_main.setVisibility(View.INVISIBLE);
         iniciarJuego.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
         });
         dbGlobal = iniciarBBDD();
         cargarTematicas();
+        inicioIntent =new Intent(this,QuizActivity.class);
+        try{
+            recibe=getIntent();
+            bolsa=recibe.getExtras();
+            String usuario = bolsa.getString("nombreUsuario");
+            if (usuario != null){
+                user_nombre_main.setVisibility(View.VISIBLE);
+                user_nombre_main.setText("Bienvenido, " + usuario);
+            }
+            inicioIntent.putExtra("nombreUsuario", usuario);
+        } catch (Exception o){
+            System.out.println("No se ha hecho bien el login");
+        }
 
 
     }
@@ -104,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
         int idTematica=tematicas.getId_tematica();
         String nombreTematica=tematicas.getNombreTematica();
 
-        Intent i=new Intent(this,QuizActivity.class);
-        i.putExtra(ID_TEMATICA,idTematica);
-        i.putExtra(TEMATICA,nombreTematica);
-        startActivityForResult(i,REQUESTCODEQUIZ);
+
+        inicioIntent.putExtra(ID_TEMATICA,idTematica);
+        inicioIntent.putExtra(TEMATICA,nombreTematica);
+        startActivityForResult(inicioIntent,REQUESTCODEQUIZ);
     }
 }

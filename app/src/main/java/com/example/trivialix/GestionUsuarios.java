@@ -119,6 +119,8 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
                     nombreIntroducido.setText("Nombre");
                     passwordIntroducida.setText("contraseña");
                 }
+            } else{
+                Toast.makeText(this,"Usuario no registrado",Toast.LENGTH_SHORT).show();
             }
 
         } else{

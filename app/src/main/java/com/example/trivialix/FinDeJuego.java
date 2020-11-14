@@ -18,7 +18,7 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
     private Intent i,recibe,vueltaAtras;
     private Bundle bolsa;
     private GifImageView gifBuenaPuntacion,gifMalaPuntacion, gifPuntacionNormal;
-    private  String nombreUsuario;
+    private BaseDatos dbGlobal;
 
 
     @SuppressLint("SetTextI18n")
@@ -26,6 +26,8 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.findeljuego);
+        dbGlobal = MainActivity.getDbGlobal();
+        i=new Intent(FinDeJuego.this,RankingActivity.class);
         atras=findViewById(R.id.volver);
         verRanking= findViewById(R.id.ranking_buttom);
         mostrarPuntuacion=findViewById(R.id.puntuacionFinal);
@@ -50,25 +52,36 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
         });
 
         try {
+            recibe=getIntent();
+            bolsa=recibe.getExtras();
+            assert bolsa != null;
+            puntuacion=bolsa.getInt("puntuacion");
+            if(puntuacion<=0){
+                mostrarPuntuacion.setText("Su puntuación es: 0 puntos" );
+            }else{
+                mostrarPuntuacion.setText("Su puntuación es: " + puntuacion + " puntos");
+            }
+
+            if(puntuacion<=14){
+                gifMalaPuntacion.setVisibility(View.VISIBLE);
+            } else if(puntuacion <= 24){
+                gifPuntacionNormal.setVisibility(View.VISIBLE);
+            }else{
+                gifBuenaPuntacion.setVisibility(View.VISIBLE);
+            }
+            try{
+                String usuario = bolsa.getString("nombreUsuario");
+                i.putExtra("nombreUsuario", usuario);
+                if (usuario != null){
+                    dbGlobal.guardarRanking(usuario, puntuacion);
+                    System.out.println("Guardado hecho");
+                }
+
+            } catch (Exception o){
+                System.out.println("No se ha hecho bien el login");
+            }
         }catch(Exception e){
             Toast.makeText(this,"Error al recibir datos",Toast.LENGTH_SHORT).show();
-        }
-        recibe=getIntent();
-        bolsa=recibe.getExtras();
-        assert bolsa != null;
-        puntuacion=bolsa.getInt("puntuacion");
-        if(puntuacion<=0){
-            mostrarPuntuacion.setText("Su puntuación es: 0 puntos" );
-        }else{
-            mostrarPuntuacion.setText("Su puntuación es: " + puntuacion + " puntos");
-        }
-
-        if(puntuacion<=14){
-            gifMalaPuntacion.setVisibility(View.VISIBLE);
-        } else if(puntuacion <= 24){
-            gifPuntacionNormal.setVisibility(View.VISIBLE);
-        }else{
-            gifBuenaPuntacion.setVisibility(View.VISIBLE);
         }
 
     }
@@ -83,9 +96,7 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
     }
 
     public void mostrarRanking(){
-        Intent i=new Intent(FinDeJuego.this,RankingActivity.class);
         i.putExtra("puntuacion",puntuacion);
-        //i.putExtra("usuario",nombreUsuario);
         startActivity(i);
     }
 }
