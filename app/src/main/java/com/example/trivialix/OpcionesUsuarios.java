@@ -10,6 +10,7 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
     private Button atras_login, nuevoUsuario, borrarUsuario, acceder;
     Bundle bolsa;
     Intent recibe, hacerLoginIntent;
+    BaseDatos dbGlobal;
 
 
 
@@ -17,6 +18,7 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.opciones_usuarios);
         super.onCreate(savedInstanceState);
+        dbGlobal = MainActivity.getDbGlobal();
         atras_login = findViewById(R.id.volver_login);
         nuevoUsuario = findViewById(R.id.registro);
         borrarUsuario = findViewById(R.id.borrar);
@@ -25,7 +27,7 @@ public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickL
         bolsa=recibe.getExtras();
         try{
             String usuario = bolsa.getString("nombreUsuario");
-            if (usuario != null){
+            if (dbGlobal.estaRegistrado(usuario)){
                 acceder.setText("Cerrar sesión");
             }
             hacerLoginIntent.putExtra("nombreUsuario", usuario);

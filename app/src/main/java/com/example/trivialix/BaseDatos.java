@@ -272,12 +272,12 @@ public class BaseDatos extends SQLiteOpenHelper {
         String myQuery = "select record from Usuarios where nombreUsuario= '" + nombre + "'";
         Cursor cursor = BBDD.rawQuery(myQuery, null);
         cursor.moveToFirst();
-            int recordBBDD =  cursor.getInt(0);
-            if (ranking > recordBBDD) {
-                String myQuery2 = "update Usuarios set record='"+ ranking +"' where nombreUsuario= '" + nombre + "'";
-                BBDD.execSQL(myQuery2);
+        int recordBBDD =  cursor.getInt(0);
+        if (ranking > recordBBDD) {
+            String myQuery2 = "update Usuarios set record='"+ ranking +"' where nombreUsuario= '" + nombre + "'";
+            BBDD.execSQL(myQuery2);
 
-            }
+        }
         cursor.close();
 
     }

@@ -90,7 +90,7 @@ public class QuizActivity extends AppCompatActivity {
 
         try{
             String usuario = bolsa.getString("nombreUsuario");
-            if (usuario != null){
+            if (dbGlobal.estaRegistrado(usuario)){
                 textUsuario.setVisibility(View.VISIBLE);
                 textUsuario.setText("¡Adelante, " + usuario + " a por todas!");
             }

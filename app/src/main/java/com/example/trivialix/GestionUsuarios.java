@@ -37,7 +37,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         opcion = bolsa.getInt("opcion");
         try{
             String usuario = bolsa.getString("nombreUsuario");
-            if (usuario != null){
+            if (dbGlobal.estaRegistrado(usuario)){
                 cerrarSesion();
             }
 

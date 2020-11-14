@@ -65,7 +65,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
         try{
             String usuario = bolsa.getString("nombreUsuario");
-            if (usuario != null){
+            if (dbGlobal.estaRegistrado(usuario)){
                 mostrarUsuario.setVisibility(View.VISIBLE);
                 mostrarUsuario.setText(usuario + ", estos son los resultados");
             }

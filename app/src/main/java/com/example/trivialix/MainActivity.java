@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             recibe=getIntent();
             bolsa=recibe.getExtras();
             String usuario = bolsa.getString("nombreUsuario");
-            if (usuario != null){
+            if (dbGlobal.estaRegistrado(usuario)){
                 user_nombre_main.setVisibility(View.VISIBLE);
                 user_nombre_main.setText("Bienvenido, " + usuario);
             }

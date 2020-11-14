@@ -71,12 +71,12 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
             }
             try{
                 String usuario = bolsa.getString("nombreUsuario");
-                i.putExtra("nombreUsuario", usuario);
-                vueltaAtras.putExtra("nombreUsuario", usuario);
                 if (usuario != null){
                     dbGlobal.guardarRanking(usuario, puntuacion);
                     System.out.println("Guardado hecho");
                 }
+                i.putExtra("nombreUsuario", usuario);
+                vueltaAtras.putExtra("nombreUsuario", usuario);
 
             } catch (Exception o){
                 System.out.println("No se ha hecho bien el login");
