@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,15 +25,16 @@ public class MainActivity extends AppCompatActivity {
     public static final String TEMATICA="NombreTematica";
     private Bundle bolsa;
     private TextView  user_nombre_main;
-    Toolbar toolbar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+       // toolbar.setLogo(R.drawable.trivialix_icon);
         tematica=findViewById(R.id.eligeTematica);
         ayuda = findViewById(R.id.ayuda);
         login = findViewById(R.id.login_main);
@@ -78,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
     }
 
     public BaseDatos iniciarBBDD(){
