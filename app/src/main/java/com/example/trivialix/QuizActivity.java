@@ -4,8 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.media.AudioManager;
-import android.media.SoundPool;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -46,10 +45,9 @@ public class QuizActivity extends AppCompatActivity {
     private Intent recibe, vueltaAtras, resultados;
     private BaseDatos dbGlobal;
     private CountDownTimer temporizador;
-    private SoundPool soundPool;
-    private int sonidoError;
-    private int sonidoCorrecto;
-    private int sonidoTiempo;
+    private MediaPlayer sonidoError;
+    private MediaPlayer sonidoCorrecto;
+    private MediaPlayer sonidoTiempo;
 
     @Override
 
@@ -79,6 +77,10 @@ public class QuizActivity extends AppCompatActivity {
         dbGlobal = MainActivity.getDbGlobal();
         colorTemporizador=textTemporizador.getTextColors();
 
+        sonidoError= MediaPlayer.create(this, R.raw.wrong);
+        sonidoCorrecto= MediaPlayer.create(this, R.raw.correcto2);
+        sonidoTiempo= MediaPlayer.create(this, R.raw.alarmalost);
+
         int tematicaid = recibe.getIntExtra(MainActivity.ID_TEMATICA,1);
         String tematicaName= recibe.getStringExtra(MainActivity.TEMATICA);
 
@@ -98,12 +100,6 @@ public class QuizActivity extends AppCompatActivity {
         }
 
 
-         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
-
-
-        sonidoError = soundPool.load(this, R.raw.wrong, 1);
-        sonidoCorrecto = soundPool.load(this,R.raw.correcto2,1);
-        sonidoTiempo=soundPool.load(this,R.raw.alarmalost,1);
         if(savedInstanceState==null){
             if (dbGlobal != null){
                 listaDePreguntas=dbGlobal.getAllPreguntas(tematicaid);
@@ -222,7 +218,7 @@ public class QuizActivity extends AppCompatActivity {
 
         if(tiempoEnMilisegundos<11000){
             textTemporizador.setTextColor(Color.RED);
-            soundPool.play(sonidoTiempo,30,30,1, 0 , 0);
+            sonidoTiempo.start();
 
         } else {
             textTemporizador.setTextColor(colors);
@@ -266,11 +262,11 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void acertaste() {
-        soundPool.play(sonidoCorrecto,30,30,1, 0 , 0);
+        sonidoCorrecto.start();
     }
 
     private void fallaste() {
-        soundPool.play(sonidoError,30,30,1, 0 , 0);
+        sonidoError.start();
     }
 
 
