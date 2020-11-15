@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-       // toolbar.setLogo(R.drawable.trivialix_icon);
+        toolbar.setLogo(R.drawable.trivialix_toolbar);
         tematica=findViewById(R.id.eligeTematica);
         //ayuda = findViewById(R.id.ayuda);
         login = findViewById(R.id.login_main);
