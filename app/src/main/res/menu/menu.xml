@@ -2,20 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-   <!--><item
-       android:id="@+id/buscar"
-       android:title=""
-       android:actionLayout="@layout/iconprueba"
-       app:showAsAction="ifRoom"
-      /> -->
-
    <item
-       android:id="@+id/button_item"
+       android:id="@+id/button_item_login"
+       android:title=""
+       app:actionLayout="@layout/buttonlogin"
+       app:showAsAction="ifRoom" />
+   <item
+       android:id="@+id/button_item_manual"
        android:title=""
        app:actionLayout="@layout/buttonhelp"
        app:showAsAction="always"
        />
-
 
 
 </menu>

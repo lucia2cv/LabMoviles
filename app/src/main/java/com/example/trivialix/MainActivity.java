@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Intent recibe, inicioIntent, loginIntent, abrirManualIntent;
     private static BaseDatos dbGlobal;
     private Spinner tematica;
-    private Button ayuda, login, iniciarJuego;
+    private Button iniciarJuego;
     public static final int REQUESTCODEQUIZ=1;
     public static final String ID_TEMATICA="IDTematica";
     public static final String TEMATICA="NombreTematica";
@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.trivialix_toolbar);
         tematica=findViewById(R.id.eligeTematica);
-        //ayuda = findViewById(R.id.ayuda);
-        login = findViewById(R.id.login_main);
         iniciarJuego = findViewById(R.id.iniciarJuego);
         user_nombre_main = findViewById(R.id.user_nombre_main);
         user_nombre_main.setVisibility(View.INVISIBLE);
@@ -47,18 +45,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 inicio();
-            }
-        });
-        /*ayuda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirManual();
-            }
-        });*/
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hacerLogin();
             }
         });
         dbGlobal = iniciarBBDD();
@@ -85,12 +71,20 @@ public class MainActivity extends AppCompatActivity {
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
-        MenuItem item = menu.findItem(R.id.button_item);
-        Button btn = item.getActionView().findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
+        MenuItem itemManual = menu.findItem(R.id.button_item_manual);
+        MenuItem itemLogin = menu.findItem(R.id.button_item_login);
+        Button btnManual = itemManual.getActionView().findViewById(R.id.button);
+        Button btnLogin = itemLogin.getActionView().findViewById(R.id.button);
+        btnManual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 abrirManual();
+            }
+        });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hacerLogin();
             }
         });
         return true;
