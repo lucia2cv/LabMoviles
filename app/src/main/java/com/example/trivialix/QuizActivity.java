@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -16,13 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private static final long CONTADORMILISEGUNDOS  =30000;
+    private static final long CONTADORMILISEGUNDOS  =12000;
     private static final String LISTAPREGUNTAS = "keyQuestionList";
     private static final String PREGUNTASCONTADOR = "keyQuestionCount";
     private static final String SCORE = "score";
@@ -45,8 +48,8 @@ public class QuizActivity extends AppCompatActivity {
     private Intent recibe, vueltaAtras, resultados;
     private BaseDatos dbGlobal;
     private CountDownTimer temporizador;
-    private MediaPlayer sonidoError;
-    private MediaPlayer sonidoCorrecto;
+    private SoundPool sonidoError;
+    private SoundPool sonidoCorrecto;
     private MediaPlayer sonidoTiempo;
 
     @Override
@@ -77,9 +80,9 @@ public class QuizActivity extends AppCompatActivity {
         dbGlobal = MainActivity.getDbGlobal();
         colorTemporizador=textTemporizador.getTextColors();
 
-        sonidoError= MediaPlayer.create(this, R.raw.wrong);
-        sonidoCorrecto= MediaPlayer.create(this, R.raw.correcto2);
-        sonidoTiempo= MediaPlayer.create(this, R.raw.alarmamongus);
+        sonidoError= new SoundPool(1, AudioManager.STREAM_MUSIC,1);
+        sonidoCorrecto= new SoundPool(1, AudioManager.STREAM_MUSIC,1);
+        sonidoTiempo= MediaPlayer.create(this, R.raw.sawlarga);
 
         int tematicaid = recibe.getIntExtra(MainActivity.ID_TEMATICA,1);
         String tematicaName= recibe.getStringExtra(MainActivity.TEMATICA);
@@ -128,7 +131,11 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!respondido){
                     if(rb1.isChecked()||rb2.isChecked()||rb3.isChecked()||rb4.isChecked()){
-                        comprobar();
+                        try {
+                            comprobar();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         rb1.setEnabled(false);
                         rb2.setEnabled(false);
                         rb3.setEnabled(false);
@@ -203,7 +210,11 @@ public class QuizActivity extends AppCompatActivity {
             public void onFinish() {
                 tiempoEnMilisegundos=0;
                 actualizarTemporizador();
-                comprobar();
+                try {
+                    comprobar();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
 
@@ -227,9 +238,13 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
-    private void comprobar(){
+    private void comprobar() throws IOException {
         respondido=true;
         temporizador.cancel();
+        if(sonidoTiempo.isPlaying()){
+            sonidoTiempo.stop();
+            sonidoTiempo.prepare();
+        }
         RadioButton seleccionado=findViewById(radioGroup.getCheckedRadioButtonId());
         int respuesta=radioGroup.indexOfChild(seleccionado)+1;
         if(respuesta==1){
@@ -262,11 +277,11 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void acertaste() {
-        sonidoCorrecto.start();
+        sonidoCorrecto.play(R.raw.correcto2,1,1,1,0,0);
     }
 
     private void fallaste() {
-        sonidoError.start();
+        sonidoError.play(R.raw.wrong,1,1,1,0,0);
     }
 
 
