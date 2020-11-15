@@ -65,9 +65,9 @@ public class FinDeJuego extends AppCompatActivity implements View.OnClickListene
             assert bolsa != null;
             puntuacion=bolsa.getInt("puntuacion");
             if(puntuacion<=0){
-                mostrarPuntuacion.setText("Su puntuación es: 0 puntos" );
+                mostrarPuntuacion.setText("Tu puntuación es: 0 puntos" );
             }else{
-                mostrarPuntuacion.setText("Su puntuación es: " + puntuacion + " puntos");
+                mostrarPuntuacion.setText("Tu puntuación es: " + puntuacion + " puntos");
             }
 
             if(puntuacion<=14){

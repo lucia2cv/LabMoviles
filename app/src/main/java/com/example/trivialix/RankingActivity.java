@@ -63,11 +63,11 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         assert bolsa != null;
         puntuacion=bolsa.getInt("puntuacion");
         if(puntuacion<=0){
-            mostrarPuntuacion.setText("Su puntuación es: 0 puntos" );
+            mostrarPuntuacion.setText("Tu puntuación es: 0 puntos" );
         }else{
-            mostrarPuntuacion.setText("Su puntuación es: " + puntuacion + " puntos");
+            mostrarPuntuacion.setText("Tu puntuación es: " + puntuacion + " puntos");
         }
-        mostrarPuntuacion.setText("Su puntuación es: " + puntuacion + " puntos");
+        mostrarPuntuacion.setText("Tu puntuación es: " + puntuacion + " puntos");
 
 
         try{
