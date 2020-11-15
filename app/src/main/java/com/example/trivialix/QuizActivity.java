@@ -79,7 +79,7 @@ public class QuizActivity extends AppCompatActivity {
 
         sonidoError= MediaPlayer.create(this, R.raw.wrong);
         sonidoCorrecto= MediaPlayer.create(this, R.raw.correcto2);
-        sonidoTiempo= MediaPlayer.create(this, R.raw.alarmalost);
+        sonidoTiempo= MediaPlayer.create(this, R.raw.alarmamongus);
 
         int tematicaid = recibe.getIntExtra(MainActivity.ID_TEMATICA,1);
         String tematicaName= recibe.getStringExtra(MainActivity.TEMATICA);
