@@ -25,7 +25,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ranking);
         i=new Intent(this,MainActivity.class);
-        sonidoFin= MediaPlayer.create(this, R.raw.saw);
+        sonidoFin= MediaPlayer.create(this, R.raw.mariobros);
         sonidoFin.start();
         dbGlobal = MainActivity.getDbGlobal();
         volver=findViewById(R.id.volver_ranking);
