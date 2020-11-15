@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private static final long CONTADORMILISEGUNDOS  =12000;
+    private static final long CONTADORMILISEGUNDOS  =30000;
     private static final String LISTAPREGUNTAS = "keyQuestionList";
     private static final String PREGUNTASCONTADOR = "keyQuestionCount";
     private static final String SCORE = "score";
@@ -157,6 +157,9 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(vueltaAtras);
+                if(sonidoTiempo.isPlaying()){
+                    sonidoTiempo.stop();
+                }
                 }
 
         });

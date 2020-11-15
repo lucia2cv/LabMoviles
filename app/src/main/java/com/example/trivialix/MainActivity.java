@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
        // toolbar.setLogo(R.drawable.trivialix_icon);
         tematica=findViewById(R.id.eligeTematica);
-        ayuda = findViewById(R.id.ayuda);
+        //ayuda = findViewById(R.id.ayuda);
         login = findViewById(R.id.login_main);
         iniciarJuego = findViewById(R.id.iniciarJuego);
         user_nombre_main = findViewById(R.id.user_nombre_main);
@@ -47,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
                 inicio();
             }
         });
-        ayuda.setOnClickListener(new View.OnClickListener() {
+        /*ayuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirManual();
             }
-        });
+        });*/
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,9 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public boolean onCreateOptionsMenu(Menu menu){
-
-        getMenuInflater().inflate(R.menu.menu,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        MenuItem item = menu.findItem(R.id.button_item);
+        Button btn = item.getActionView().findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirManual();
+            }
+        });
         return true;
     }
 

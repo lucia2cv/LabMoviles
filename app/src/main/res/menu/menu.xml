@@ -4,7 +4,18 @@
 
    <item
        android:id="@+id/buscar"
-       android:title="Buscar"
-       android:icon="@drawable/icon_buscar"
-       app:showAsAction="always"/>
+       android:title=""
+       android:actionLayout="@layout/iconprueba"
+       app:showAsAction="ifRoom"
+      />
+
+   <item
+       android:id="@+id/button_item"
+       android:title=""
+       app:actionLayout="@layout/buttonhelp"
+       app:showAsAction="always"
+       />
+
+
+
 </menu>
