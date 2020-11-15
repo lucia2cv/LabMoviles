@@ -7,6 +7,7 @@
     android:background="@color/colorPrimary"
     android:id="@+id/toolbar"
     app:title="TRIVIALIX"
+    app:titleMarginStart="30dp"
     app:titleTextColor="@color/blanco">
 
 </android.support.v7.widget.Toolbar>
