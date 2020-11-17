@@ -51,6 +51,8 @@ public class QuizActivity extends AppCompatActivity {
     private SoundPool sonidoError;
     private SoundPool sonidoCorrecto;
     private MediaPlayer sonidoTiempo;
+    int correcto;
+    int error;
 
     @Override
 
@@ -83,6 +85,10 @@ public class QuizActivity extends AppCompatActivity {
         sonidoError= new SoundPool(1, AudioManager.STREAM_MUSIC,1);
         sonidoCorrecto= new SoundPool(1, AudioManager.STREAM_MUSIC,1);
         sonidoTiempo= MediaPlayer.create(this, R.raw.sawlarga);
+        correcto=sonidoCorrecto.load(this,R.raw.correcto2,1);
+        error=sonidoError.load(this,R.raw.wrong,1);
+
+
 
         int tematicaid = recibe.getIntExtra(MainActivity.ID_TEMATICA,1);
         String tematicaName= recibe.getStringExtra(MainActivity.TEMATICA);
@@ -280,11 +286,11 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void acertaste() {
-        sonidoCorrecto.play(R.raw.correcto2,1,1,1,0,0);
+        sonidoCorrecto.play(correcto,1,1,1,0,0);
     }
 
     private void fallaste() {
-        sonidoError.play(R.raw.wrong,1,1,1,0,0);
+        sonidoError.play(error,1,1,1,0,0);
     }
 
 
