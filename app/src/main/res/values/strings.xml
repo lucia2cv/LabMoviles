@@ -67,5 +67,6 @@
     <string name="seleccione_tem_tica">Selecciona temática:</string>
     <string name="manual">manual</string>
     <string name="imagenicono">imagenicono</string>
+    <string name="mensaje_error_del_ranking">Mensaje Error del Ranking</string>
 
 </resources>

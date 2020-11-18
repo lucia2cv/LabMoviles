@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableLayout;
 import android.widget.TextView;
+
+import java.util.List;
 
 
 public class RankingActivity extends AppCompatActivity implements View.OnClickListener {
     private Button volver;
-    private TextView mostrarPuntuacion, mostrarUsuario, nombre1, nombre2, nombre3, ranking1, ranking2, ranking3;
+    private TableLayout tabla;
+    private TextView mostrarPuntuacion, mostrarUsuario, nombre1, nombre2, nombre3, ranking1, ranking2, ranking3, error;
     private int puntuacion;
     private BaseDatos dbGlobal;
     private Bundle bolsa;
@@ -45,18 +49,29 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         ranking1=findViewById(R.id.ranking1);
         ranking2=findViewById(R.id.ranking2);
         ranking3=findViewById(R.id.ranking3);
+        error = findViewById(R.id.errorRanking);
+        error.setVisibility(View.INVISIBLE);
 
 
+        List<Usuarios> usuarios = dbGlobal.getAllUsuarios();
+        if (usuarios.size() >= 3) {
+            Usuarios user1 = dbGlobal.top1player();
+            Usuarios user2 = dbGlobal.top2player();
+            Usuarios user3 = dbGlobal.top3player();
+            nombre1.setText(user1.getNombre());
+            nombre2.setText(user2.getNombre());
+            nombre3.setText(user3.getNombre());
+            ranking1.setText(Integer.toString(user1.getRecord()) + " puntos");
+            ranking2.setText(Integer.toString(user2.getRecord()) + " puntos");
+            ranking3.setText(Integer.toString(user3.getRecord()) + " puntos");
+        } else{
+            tabla = findViewById(R.id.tableLayout);
+            tabla.setVisibility(View.INVISIBLE);
+            error.setText("No hay datos suficientes");
+            error.setVisibility(View.VISIBLE);
 
-        Usuarios user1 = dbGlobal.top1player();
-        Usuarios user2 = dbGlobal.top2player();
-        Usuarios user3 = dbGlobal.top3player();
-        nombre1.setText(user1.getNombre());
-        nombre2.setText(user2.getNombre());
-        nombre3.setText(user3.getNombre());
-        ranking1.setText(Integer.toString(user1.getRecord()) + " puntos");
-        ranking2.setText(Integer.toString(user2.getRecord())+ " puntos");
-        ranking3.setText(Integer.toString(user3.getRecord())+ " puntos");
+        }
+
 
         recibe=getIntent();
         bolsa=recibe.getExtras();
