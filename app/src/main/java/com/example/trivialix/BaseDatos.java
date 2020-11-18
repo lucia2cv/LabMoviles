@@ -222,7 +222,10 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     //Crear un usuario
     public boolean crearUsuario(String nombre, String password){
-        int id_user = getAllUsuarios().size() + 1;
+        List<Usuarios> usuarios = getAllUsuarios();
+        int numUsuarios = usuarios.size();
+        Usuarios ultimoUsuario = getAllUsuarios().get(numUsuarios-1);
+        int id_user = ultimoUsuario.getId_user()+1;
         if (!estaRegistrado(nombre)) {
             String myQuery = "insert into Usuarios (id_usuario, nombreUsuario, password, record) values (" + String.valueOf(id_user) + ", " + "'"+ nombre + "', '" + password + "', 0)";
             BBDD.execSQL(myQuery);
