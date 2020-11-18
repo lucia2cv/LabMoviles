@@ -131,8 +131,11 @@ public class BaseDatos extends SQLiteOpenHelper {
             case 3: myQuery = "SELECT * FROM  Preguntas WHERE id_tema = 3";
                 break;
             case 4: myQuery = "SELECT * FROM  Preguntas WHERE id_tema = 4";
-            break;
-
+                break;
+            case 5: myQuery = "SELECT * FROM Preguntas WHERE id_tema = 5";
+                break;
+            case 6: myQuery = "SELECT * FROM Preguntas WHERE id_tema = 6";
+                break;
 
         }
         Cursor cursor=BBDD.rawQuery(myQuery,null);
