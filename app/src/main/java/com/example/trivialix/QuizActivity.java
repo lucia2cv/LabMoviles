@@ -264,6 +264,8 @@ public class QuizActivity extends AppCompatActivity {
             comodin="c";
         }else if(respuesta==4){
             comodin="d";
+        } else{
+            comodin = null;
         }
         if(comodin!=null){
             if(comodin.equals(preguntaActual.getOpcionCorrecta())){
@@ -280,6 +282,16 @@ public class QuizActivity extends AppCompatActivity {
                 }
 
             }
+        } else{
+            fallaste();
+
+            if (puntuacion > 2){
+                puntuacion = puntuacion - 2;
+            }
+            else {
+                puntuacion = 0;
+            }
+
         }
         textPuntos.setText("Puntos: "+ puntuacion);
         mostrarOpcionCorrecta();
