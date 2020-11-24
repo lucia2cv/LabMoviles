@@ -1,5 +1,6 @@
 package com.example.trivialix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
 
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.datos_usuario);
@@ -91,6 +93,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
     }
 
+    @SuppressLint("SetTextI18n")
     public void crearUsuario(){
         nombreUsuario = nombreIntroducido.getText().toString();
         password = passwordIntroducida.getText().toString();
@@ -118,6 +121,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
 
 
     }
+    @SuppressLint("SetTextI18n")
     public void hacerLogin(){
         nombreUsuario = nombreIntroducido.getText().toString();
         password = passwordIntroducida.getText().toString();
@@ -144,6 +148,7 @@ public class GestionUsuarios extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void bajaUsuario(){
         nombreIntroducido = findViewById(R.id.nombreUsuario);
         passwordIntroducida = findViewById(R.id.password);

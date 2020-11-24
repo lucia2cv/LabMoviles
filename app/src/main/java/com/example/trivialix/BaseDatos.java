@@ -17,8 +17,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class BaseDatos extends SQLiteOpenHelper {
-    private static String DB_PATH = "data/data/com.example.trivialix/databases/";
-    private static String DB_NOMBRE = "trivialix.db";
+    private static final String DB_PATH = "data/data/com.example.trivialix/databases/";
+    private static final String DB_NOMBRE = "trivialix.db";
     private SQLiteDatabase BBDD;
     private final Context context;
 
@@ -89,7 +89,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         int length;
 
         dataBaseInputStream = context.getAssets().open("trivialix.db");
-        while ((length =dataBaseInputStream.read(buffer)) > 0) {
+        while (dataBaseInputStream.read(buffer) > 0) {
             dataBaseOutputStream.write(buffer);
         }
         dataBaseInputStream.close();
@@ -226,7 +226,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         Usuarios ultimoUsuario = getAllUsuarios().get(numUsuarios-1);
         int id_user = ultimoUsuario.getId_user()+1;
         if (!estaRegistrado(nombre)) {
-            String myQuery = "insert into Usuarios (id_usuario, nombreUsuario, password, record) values (" + String.valueOf(id_user) + ", " + "'"+ nombre + "', '" + password + "', 0)";
+            String myQuery = "insert into Usuarios (id_usuario, nombreUsuario, password, record) values (" + id_user + ", " + "'"+ nombre + "', '" + password + "', 0)";
             BBDD.execSQL(myQuery);
             return true;
         } else{

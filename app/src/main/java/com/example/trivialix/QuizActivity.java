@@ -32,17 +32,22 @@ public class QuizActivity extends AppCompatActivity {
     private static final String TIEMPO = "tiempo";
     private static final String RESPONDER = "responder";
     private long tiempoEnMilisegundos;
-    private TextView textEnunciado, textPuntos, textContadorPreguntas, textViewTematica, textTemporizador, textUsuario;
+    private TextView textEnunciado;
+    private TextView textPuntos;
+    private TextView textContadorPreguntas;
+    private TextView textTemporizador;
+    private TextView textUsuario;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button siguiente, volver;
     private List<Preguntas> listaDePreguntas;
     private ColorStateList colors;
-    private ColorStateList colorTemporizador;
-    private int preguntasContestadas, puntuacion,totalPreguntas,contadorPreguntas;
+    private int preguntasContestadas;
+    private int puntuacion;
+    private int contadorPreguntas;
     private static final int MAX_PREGUNTAS = 10;
     private Preguntas preguntaActual;
-    private String comodin, nombreUsuario;
+    private String comodin;
     private boolean respondido;
     private Bundle bolsa;
     private Intent recibe, vueltaAtras, resultados;
@@ -51,9 +56,10 @@ public class QuizActivity extends AppCompatActivity {
     private SoundPool sonidoError;
     private SoundPool sonidoCorrecto;
     private MediaPlayer sonidoTiempo;
-    int correcto;
-    int error;
+    private int correcto;
+    private int error;
 
+    @SuppressLint("SetTextI18n")
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +69,7 @@ public class QuizActivity extends AppCompatActivity {
         textUsuario.setVisibility(View.INVISIBLE);
         vueltaAtras=new Intent(this, MainActivity.class);
         resultados=new Intent(this, FinDeJuego.class);
-        textViewTematica=findViewById(R.id.tematicaElegida);
+        TextView textViewTematica = findViewById(R.id.tematicaElegida);
         textEnunciado=findViewById(R.id.pregunta);
         textPuntos=findViewById(R.id.puntuacion);
         textContadorPreguntas=findViewById(R.id.numeroPregunta);
@@ -80,7 +86,7 @@ public class QuizActivity extends AppCompatActivity {
         recibe=getIntent();
         bolsa=recibe.getExtras();
         dbGlobal = MainActivity.getDbGlobal();
-        colorTemporizador=textTemporizador.getTextColors();
+        ColorStateList colorTemporizador = textTemporizador.getTextColors();
 
         sonidoError= new SoundPool(1, AudioManager.STREAM_MUSIC,1);
         sonidoCorrecto= new SoundPool(1, AudioManager.STREAM_MUSIC,1);
@@ -118,7 +124,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         }else{
             listaDePreguntas=savedInstanceState.getParcelableArrayList(LISTAPREGUNTAS);
-            totalPreguntas=listaDePreguntas.size();
+            int totalPreguntas = listaDePreguntas.size();
             contadorPreguntas=savedInstanceState.getInt(PREGUNTASCONTADOR);
             preguntaActual=listaDePreguntas.get(contadorPreguntas-1);
             puntuacion=savedInstanceState.getInt(SCORE);
@@ -206,14 +212,13 @@ public class QuizActivity extends AppCompatActivity {
 
     private void tiempoMaximo() {
         temporizador=new CountDownTimer(tiempoEnMilisegundos,1000) {
-            int i;
+
             @Override
             public void onTick(long millisUntilFinished) {
                 tiempoEnMilisegundos=millisUntilFinished;
 
                 actualizarTemporizador();
-                i++;
-                System.out.println(i);
+
             }
 
             @Override
@@ -248,6 +253,7 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void comprobar() throws IOException {
         respondido=true;
         temporizador.cancel();
@@ -309,6 +315,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
 
+    @SuppressLint("SetTextI18n")
     private void mostrarOpcionCorrecta(){
         rb1.setTextColor(Color.RED);
         rb2.setTextColor(Color.RED);

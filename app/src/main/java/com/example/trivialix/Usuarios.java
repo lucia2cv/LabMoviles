@@ -1,6 +1,9 @@
 package com.example.trivialix;
 
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.Comparator;
 
 public class Usuarios {
@@ -51,9 +54,10 @@ public class Usuarios {
 
        public UsuariosComparator() {
         }
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         public int compare(Usuarios o1, Usuarios o2) {
-            return new Integer(o1.getRecord()).compareTo(new Integer(o2.getRecord()));
+            return Integer.compare(o1.getRecord(), o2.getRecord());
         }
     }
 

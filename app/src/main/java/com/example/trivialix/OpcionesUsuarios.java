@@ -1,5 +1,6 @@
 package com.example.trivialix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +9,13 @@ import android.widget.Button;
 
 public class OpcionesUsuarios extends AppCompatActivity implements View.OnClickListener {
     private Button atras_login, nuevoUsuario, borrarUsuario, acceder;
-    Bundle bolsa;
-    Intent recibe, crearUsuarioIntent, hacerLoginIntent, bajaUsuarioIntent, volverIntent;
-    BaseDatos dbGlobal;
+    private Bundle bolsa;
+    private Intent recibe, crearUsuarioIntent, hacerLoginIntent, bajaUsuarioIntent, volverIntent;
+    private BaseDatos dbGlobal;
 
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.opciones_usuarios);

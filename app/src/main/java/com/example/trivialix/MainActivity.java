@@ -1,5 +1,6 @@
 package com.example.trivialix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView  user_nombre_main;
     private Toolbar toolbar;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cargarTematicas() {
-        List<Tematicas> listaTematicas = new ArrayList<>();
+        List<Tematicas> listaTematicas;
         if (dbGlobal != null){
             listaTematicas =dbGlobal.getAllTematicas();
             ArrayAdapter<Tematicas> adapterTematicas=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,listaTematicas);
