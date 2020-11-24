@@ -162,10 +162,11 @@ public class QuizActivity extends AppCompatActivity {
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(vueltaAtras);
                 if(sonidoTiempo.isPlaying()){
                     sonidoTiempo.stop();
                 }
+                startActivity(vueltaAtras);
+
                 }
 
         });
